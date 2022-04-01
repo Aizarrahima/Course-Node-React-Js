@@ -10,7 +10,7 @@ export default class Catalog extends Component {
         this.state = {
             buku: [
                 {
-                    isbn: "010351", judul: "Introduction to Basic Editing Using Filmora", penulis: "Colleen Hoover",
+                    isbn: "010351", judul: "www", penulis: "Colleen Hoover",
                     penerbit: "Atria", harga: 156000,
                     cover: "https://i.pinimg.com/564x/cc/5a/a2/cc5aa25a6a1cd1422572e54b985ee530.jpg"
                 },
