@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import Navbar from './Navbar'
 import axios from 'axios'
+import { Link, NavLink } from 'react-router-dom'
 
 export default class Category extends Component {
     constructor() {
@@ -21,7 +22,7 @@ export default class Category extends Component {
         if (localStorage.getItem('token')) {
             this.state.token = localStorage.getItem('token')
         } else {
-            window.location = '/login'
+            window.location = '/siginin'
         }
     }
 
@@ -144,6 +145,10 @@ export default class Category extends Component {
         }
     }
 
+    // handleDetail = (id) => {
+    //     this.props.history.push(`/category/${id}`)
+    // }
+
 
     componentDidMount() {
         this.getCategory()
@@ -154,17 +159,15 @@ export default class Category extends Component {
             <div>
                 <Navbar />
                 <div className="container my-2 py-5">
+                    <h1 className="display-6 fw-light text-left">Class Category</h1>
+
                     <div className="row">
-                        <div className="col-12 mb-1">
-                            <h1 className="display-6 fw-light text-left">Class Category</h1>
-                            <div className="tombol mb-5">
-                                <div className='cat'>
-                                    <button onClick={() => this.handleAdd()} className="btn btn-dark" id="blue">Add Data</button>
-                                </div>
-                                <div className="input">
-                                    <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Category..." id="search" value={this.state.search} onChange={this.handleChange} onKeyUp={this.findCategory}/>
-                                </div>
-                            </div>
+                        <div className="col-6 mb-1">
+                            <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Category..." id="search" value={this.state.search} onChange={this.handleChange} onKeyUp={this.findCategory} />
+
+                        </div>
+                        <div className="col-3 mt-5">
+                            <button onClick={() => this.handleAdd()} className="btn btn-dark" id="btn-blue">Add Data</button>
                         </div>
                     </div>
                     <div className="row ">
@@ -172,13 +175,13 @@ export default class Category extends Component {
                             return (
                                 <div className="col-md-3 mb-4 py-1 my-1" id="p" key={index}>
                                     <div className="card h-100 text-left rounded" id="card-category">
-                                        <img src={"http://localhost:8000/image/course/" + item.image} className="card-img-top" alt={item.name} id="pic-category"/>
+                                        <img src={"http://localhost:8000/image/course/" + item.image} className="card-img-top" alt={item.name} id="pic-category" />
                                         <div className="card-body">
                                             <h5 className="card-title mb-1 fs-5 fw-bold">{item.name}</h5>
                                             <p className="card-text lead fw-light fs-6" id="desc-category">{item.description}</p>
                                             <button className="btn btn-sm btn-info m-1" onClick={() => this.handleEdit(item)} id="sky"><i className="fa fa-pencil" ></i></button>
                                             <button className="btn btn-sm btn-dark m-1" onClick={() => this.handleDrop(item.id_category)} id="light"><i className="fa fa-trash" ></i></button>
-                                            <button className="btn btn-sm btn-dark m-1" onClick={() => this.handleDrop(item.id_category)} id="blue">Detail</button>
+                                            <NavLink className="btn btn-sm btn-dark m-1" id="blue" to={`/category/${item.id_category}`}>Detail</NavLink>
                                         </div>
                                     </div>
 

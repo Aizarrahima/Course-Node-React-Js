@@ -134,5 +134,20 @@ module.exports = {
         })
   },
 
+  find: (req, res) => {
+    let find = req.body.find
+    let sql = "select * from admin where name like '%" + find + "%' or id_admin like '%" + find + "%' or address like '%" + find + "%' or gender like '%" + find + "%' or age like '%" + find + "%' or email like '%" + find + "%' or phone like '%" + find + "%' "
+    db.query(sql, (err, result) => {
+        if (err) {
+            throw err
+        } else {
+            
+            res.json({
+              result
+            })
+        }
+    })
+  }
+
   
 };

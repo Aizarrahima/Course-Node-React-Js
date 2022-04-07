@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { NavLink } from 'react-router-dom'
 
 
 export default class Signup extends Component {
@@ -60,7 +61,10 @@ export default class Signup extends Component {
                 <button type="submit" className='button-sign btn btn-dark' id="light">Sign Up</button>
               </div>
               </form>
+              <p className='text-center' id="confirm">Already have an account? <NavLink to='/signin' id="cr-account">Sign in here!</NavLink></p>
+
             </div>
+
           </div>
 
 

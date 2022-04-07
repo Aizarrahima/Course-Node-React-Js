@@ -40,8 +40,9 @@ export default class Navbar extends Component {
                     <NavLink to="/" className="no-underline ml-10 text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Dashboard</NavLink>
                     <NavLink to="/category" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Category</NavLink>
                     <NavLink to="/user" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">User</NavLink>
-                    <NavLink to="/signup" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Register</NavLink>
-                    {/* <NavLink to="/signin" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Login</NavLink> */}
+                    <NavLink to="/admin" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Admin</NavLink>
+                    <NavLink to="/mentor" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Mentor</NavLink>
+                    <NavLink to="/admin" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Transaction</NavLink>
                     <NavLink to="/profile" className="no-underline text-gray-800 hover:text-blue-900 px-3 py-0 px-1 rounded-md text-2xl font-medium " aria-current="page" id="profile"><i className="fa fa-user me-1 "></i></NavLink>
                     <button onClick={() => this.out()} className="no-underline text-gray-800 px-1 py-0 hover:text-blue-900 rounded-md text-2xl font-medium" aria-current="page" > <i className="fa fa-sign-out me-1 "></i></button>
                   </div>

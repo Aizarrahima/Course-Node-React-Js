@@ -51,7 +51,7 @@ class Profile extends Component {
             .then(res => {
                 // mengisikan data dari respon API ke array pegawai
                 this.setState({
-                    admin: res.data.data
+                     admin: res.data.data
                 })
             })
             .catch(error => {
@@ -169,19 +169,19 @@ class Profile extends Component {
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Admin ID</label>
                                         <div className="col-sm-10">
-                                            <input type="number" name="id_admin" class="form-control" value={this.state.adminId} readOnly />
+                                            <input type="number" name="id_admin" class="form-control" value={this.state.adminId}  />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Name</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="name" class="form-control" value={this.state.admin.name} />
+                                            <input type="text" name="name" class="form-control" value={this.state.admin.name} onChange={this.handleChange} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Phone</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="level" class="form-control" value={this.state.admin.phone} />
+                                            <input type="text" name="phone" class="form-control" value={this.state.admin.phone} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">

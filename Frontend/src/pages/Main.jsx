@@ -8,18 +8,24 @@ import Signup from './Signup';
 import SignIn from './SignIn';
 import Profile from './Profile';
 import Category from './Category';
-
+import Admin from './Admin';
+import Mentor from './Mentor';
 
 const Main = () => {
+    
+    
+   
     return (
         <Routes>
             <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/catalog" element={<Catalog/>}/>
+            <Route exact path="/category/:id" element={<Catalog/>}/>
             <Route exact path="/user" element={<User/>}/>
+            <Route exact path="/admin" element={<Admin/>}/>
             <Route exact path="/signup" element={<Signup/>}/>
             <Route exact path="/signin" element={<SignIn/>}/>
             <Route exact path="/profile" element={<Profile/>}/>
-            <Route exact path="/category" element={<Category/>}/>
+            <Route exact path="/category" element={ <Category/>}/>
+            <Route exact path="/mentor" element={ <Mentor/>}/>
         </Routes>
     );
 };

@@ -3,11 +3,11 @@ import $ from 'jquery';
 import Navbar from './Navbar';
 import axios from 'axios';
 
-class User extends React.Component {
+class Admin extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: [],
+            admin: [],
             isModalOpen: false,
             token: "",
             id_user: 0,
@@ -26,7 +26,7 @@ class User extends React.Component {
         if (localStorage.getItem('token')) {
             this.state.token = localStorage.getItem('token')
         } else {
-            window.location = '/login'
+            window.location = '/signin'
         }
     }
 
@@ -36,12 +36,12 @@ class User extends React.Component {
         })
     }
 
-    getUser = () => {
-        let url = 'http://localhost:8000/user/'
+    getAdmin = () => {
+        let url = 'http://localhost:8000/admin/'
         axios.get(url)
             .then(res => {
                 this.setState({
-                    user: res.data.data
+                    admin: res.data.data
                 })
                 console.log(this.state.user)
             })
@@ -51,12 +51,12 @@ class User extends React.Component {
     }
 
     handleDrop = (id) => {
-        let url = "http://localhost:8000/user/" + id
+        let url = "http://localhost:8000/admin/" + id
         if (window.confirm("Are you sure to delete this user ?")) {
             axios.delete(url)
                 .then(res => {
                     console.log(res.data.message)
-                    this.getUser()
+                    this.getAdmin()
                 })
                 .catch(err => {
                     console.log(err.message)
@@ -64,8 +64,8 @@ class User extends React.Component {
         }
     }
 
-    findUser = (event) => {
-        let url = "http://localhost:8000/user/find";
+    findAdmin = (event) => {
+        let url = "http://localhost:8000/admin/find";
         if (event.keyCode === 13) {
             // menampung data keyword pencarian
             let form = {
@@ -76,7 +76,7 @@ class User extends React.Component {
             axios.post(url, form)
                 .then(response => {
                     // mengisikan data dari respon API ke array pegawai
-                    this.setState({ user: response.data.result });
+                    this.setState({ admin: response.data.result });
                 })
                 .catch(error => {
                     console.log(error);
@@ -85,7 +85,7 @@ class User extends React.Component {
     }
 
     componentDidMount () {
-        this.getUser()
+        this.getAdmin()
     }
 
     
@@ -95,22 +95,17 @@ class User extends React.Component {
             <div>
                 <Navbar/>
             <div className="container my-2 py-5">
-            <h1 className="display-6 fw-light text-left">User</h1>
+            <h1 className="display-6 fw-light text-left">Admin</h1>
                 <div className="row">
                         <div className="col-6 mb-1">
-                            <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Category..." id="search" value={this.state.search} onChange={this.handleChange} onKeyUp={this.findUser} />
+                            <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Category..." id="search" value={this.state.search} onChange={this.handleChange} onKeyUp={this.findAdmin} />
 
-                        </div>
-                        <div className="col-3 mt-5">
-                            <button onClick="" className="btn btn-dark" id="btn-blue">Add Data</button>
                         </div>
                     </div>
-
-
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>User ID</th>
+                            <th>Admin ID</th>
                             <th>Name</th>
                             <th>Address</th>
                             <th>Phone Number</th>
@@ -121,10 +116,10 @@ class User extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.user.map((item, index) => {
+                        {this.state.admin.map((item, index) => {
                              return (
                                 <tr key={index}>
-                                    <td>{item.id_user}</td>
+                                    <td>{item.id_admin}</td>
                                     <td>{item.name}</td>
                                     <td>{item.address}</td>
                                     <td>{item.phone}</td>
@@ -133,7 +128,7 @@ class User extends React.Component {
                                     <td>{item.email}</td>
 
                                     <td>
-                                        <button className="btn btn-sm btn-dark m-1" id="blue" onClick={() => this.handleDrop(item.id_user)}><i className="fa fa-trash"></i></button>
+                                        <button className="btn btn-sm btn-dark m-1" id="blue" onClick={() => this.handleDrop(item.id_admin)}><i className="fa fa-trash"></i></button>
                                     </td>
                                 </tr> 
                              )
@@ -150,4 +145,4 @@ class User extends React.Component {
     }
 }
 
-export default User;
+export default Admin;

@@ -19,6 +19,7 @@ class Home extends React.Component {
     }else{
       window.location = '/signin'
     }
+    
   }
 
   headerConfig = () =>{
@@ -116,7 +117,7 @@ class Home extends React.Component {
                       <div className=" lg:justify-start">
                         
                       <a
-                      href="/catalog"
+                      href="/category"
                       className="no-underline w-full flex items-center justify-center px-8 py-2 border border-transparent text-base font-medium rounded-md text-blue-900 bg-blue-100 hover:bg-blue-800 hover:text-blue-100 md:py-4 md:text-lg md:px-10" id="btn"
                     >
                       TechCo's Catalog
