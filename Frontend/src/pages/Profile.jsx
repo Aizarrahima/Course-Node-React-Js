@@ -14,6 +14,7 @@ class Profile extends Component {
             adminId: 0,
             id_admin: 0,
             theimage: false,
+            iconGender: false,
             name: "",
             image: "",
             address: "",
@@ -36,6 +37,9 @@ class Profile extends Component {
         if (this.state.admin.image != null) {
             this.state.theimage = true
         }
+
+        
+
     }
 
     handleChange = (e) => {
@@ -98,6 +102,8 @@ class Profile extends Component {
             });
     }
 
+
+
     handleClose = () => {
         this.setState({
             isModalOpen: false
@@ -110,11 +116,24 @@ class Profile extends Component {
         })
     }
 
+    handleDeleteProfile = (id) =>{
+        let url = "http://localhost:8000/admin/delprof/" + id
+        if (window.confirm("Are you sure to delete yout photo ptofile ?")) {
+            axios.put(url)
+                .then(res => {
+                   this.getAdmin()
+                })
+                .catch(err => {
+                    console.log(err.message)
+                })
+        }
+    }
 
 
     componentDidMount() {
         // method yang pertama kali dipanggil pada saat load page
         this.getAdmin()
+        
     }
 
 
@@ -148,7 +167,7 @@ class Profile extends Component {
                                         </div>
                                         <div className="col">
                                             <div className="card" id="loc-card">
-                                                <span className='text-center mb-2'><i className="fa fa-venus" id="loc-icon"></i></span>
+                                                <span className='text-center mb-2'><i className="fa fa-venus-mars" id="loc-icon"></i></span>
                                                 <h5 className='display-7 fw-bold text-center'>{this.state.admin.gender}</h5>
                                                 <h6 className='fs-6 fw-light text-center mb-4'>Gender</h6>
                                             </div>
@@ -157,6 +176,8 @@ class Profile extends Component {
                                     </div>
                                     <div className="col text-center mt-4 mb-4">
                                         <input type="submit" class="btn btn-dark" value="Edit Profile" id="blue" onClick={() => this.handleEdit()} />
+                                        <input type="submit" class="btn btn-dark ms-2" value="Del Photo" id="blue" onClick={() => this.handleDeleteProfile(this.state.admin.id_admin)} />
+
                                     </div>
                                 </div>
                             </div>

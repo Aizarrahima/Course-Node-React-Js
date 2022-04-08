@@ -46,7 +46,7 @@ h1 {
 
 #buku{
   width: 170px;
-  height: 220px;
+  height: 240px;
   border-radius: 15px;
 }
 
@@ -87,7 +87,7 @@ h1 {
 
 #card{
   /* max-width: 550px; */
-  height: 280px;
+  height: 300px;
   border-radius: 15px;
   background: #f6f7f9;
   border-color: transparent;
@@ -217,6 +217,11 @@ h1 {
   font-size: small;
   font-weight: 100;
 }
+/* 
+#confirm1{
+  font-size: small;
+  margin-bottom: -40px;
+} */
 
 #cr-account{
   color: #1a1774;

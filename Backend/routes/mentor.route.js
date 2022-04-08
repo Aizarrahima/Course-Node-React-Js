@@ -27,7 +27,7 @@ router.get("/:id", mentorController.getId)
 router.post("/", upload.single("image"), mentorController.add)
 router.put("/:id", upload.single("image"),mentorController.update)
 router.delete("/:id", mentorController.delete)
-router.post("/find", upload.single("image"), mentorController.find)
+router.post("/find", mentorController.find)
 
 
 module.exports = router;

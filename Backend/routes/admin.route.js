@@ -26,9 +26,11 @@ router.get("/", adminController.getAll)
 router.get("/:id", adminController.getId)
 router.post("/", upload.single("image"), adminController.add)
 router.put("/:id", upload.single("image"),adminController.update)
+router.put("/", adminController.updatePw)
+router.put("/delprof/:id", adminController.deleteProfile)
 router.post("/login", adminController.login)
 router.delete("/:id", adminController.delete)
-router.post("/find", upload.single("image"), adminController.find)
+router.post("/find", adminController.find)
 
 
 module.exports = router;

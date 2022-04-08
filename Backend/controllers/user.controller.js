@@ -42,7 +42,7 @@ module.exports = {
     }
     if ((!data.name, !data.email || !data.password)) {
       res.status(402).json({
-        message: "Nama Petugas, Username, dan Password Harus Diisi!",
+        message: "Nama User, Username, dan Password Harus Diisi!",
       });
     }
     if(req.file){
@@ -73,7 +73,6 @@ module.exports = {
       age: req.body.age,
       phone: req.body.phone,
       email: req.body.email,
-      password: md5(req.body.password)
     }
     if(req.file){
       data.image = req.file.filename

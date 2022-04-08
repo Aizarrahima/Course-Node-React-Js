@@ -27,8 +27,10 @@ let upload = multer({
 router.get("/", classController.getAll);
 router.get("/:id_category", classController.getCategory);
 router.get("/getId/:id", classController.getId);
-router.post("/", upload.single("image"), classController.add);
-router.put("/:id", upload.single("image"), classController.update);
+router.post("/", upload.single("image_class"), classController.add);
+router.put("/:id", upload.single("image_class"), classController.update);
 router.delete("/:id", classController.delete);
+router.post("/find/:id", classController.find)
+
 
 module.exports = router;

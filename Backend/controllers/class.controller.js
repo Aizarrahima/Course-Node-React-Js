@@ -55,9 +55,9 @@ module.exports = {
             });
         } else {
             let data = {
-                name: req.body.name,
-                image: req.file.filename,
-                description: req.body.description,
+                name_class: req.body.name_class,
+                image_class: req.file.filename,
+                description_class: req.body.description_class,
                 price: req.body.price,
                 id_category: req.body.id_category,
             };
@@ -87,8 +87,8 @@ module.exports = {
     update: (req, res) => {
         let id = req.params.id;
         let data = {
-            name: req.body.name,
-            description: req.body.description,
+            name_class: req.body.name_class,
+            description_class: req.body.description_class,
             price: req.body.price,
             id_category: req.body.id_category
         };
@@ -96,7 +96,7 @@ module.exports = {
             if (err) throw err;
             if (!result.length) res.json({ message: "category not found!" });
             if (req.file) {
-                data.image = req.file.filename;
+                data.image_class = req.file.filename;
                 db.query(`update class set ? where id_class = ${id}`, data, (err, result) => {
                     if (err) throw err;
                     res.json({
@@ -107,7 +107,7 @@ module.exports = {
             } else {
                 db.query(`update class set ? where id_class = ${id}`, data, (err, result) => {
                     if (err) {
-                        throw error;
+                        throw err;
                     } else {
                         res.json({
                             message: "data has been updated",
@@ -130,4 +130,20 @@ module.exports = {
             });
         });
     },
+
+    find: (req, res) => {
+        let find = req.body.find
+        const id = req.params.id
+        let sql = "select * from class where name_class like '%" + find + "%' and id_category  "
+        db.query(sql, (err, result) => {
+            if (err) {
+                throw err
+            } else {
+                
+                res.json({
+                  result
+                })
+            }
+        })
+      }
 };

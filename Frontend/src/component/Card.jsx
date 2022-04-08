@@ -18,15 +18,16 @@ class Card extends React.Component {
                             <h4 className="judul fs-3">
                                 {this.props.judul}
                             </h4>
-                            <h6 className="fs-6 fw-lighter mb-4">
-                                by {this.props.penulis}
-                            </h6>
-                            <h6 className="fs-6 fw-lighter">
-                                Published by {this.props.penerbit}
-                            </h6>
-                            <h6 className="price fs-5 fw-normal">
+                            <h6 className="price fs-6 fw-normal">
                                 Rp {this.props.harga},00
                             </h6>
+                            <h6 className="fs-6 fw-lighter mb-3">
+                                 {this.props.description}
+                            </h6>
+                            {/* <h6 className="fs-6 fw-lighter">
+                                {this.props.penerbit}
+                            </h6> */}
+                            
 
                             {/* button untuk mengedit */}
                             <button className="btn btn-sm btn-dark m-1" 
@@ -39,10 +40,10 @@ class Card extends React.Component {
                                 onClick={this.props.onDrop}><i className="fa fa-trash"></i>
                             </button>
 
-                            <button className="btn btn-sm btn-dark m-1" id="blue"
+                            {/* <button className="btn btn-sm btn-dark m-1" id="blue"
                                 onClick={this.props.onCart}>
                                 Add to cart
-                            </button>
+                            </button> */}
 
                         </div>
                     </div>

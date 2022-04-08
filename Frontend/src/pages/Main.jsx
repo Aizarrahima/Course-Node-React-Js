@@ -18,7 +18,8 @@ const Main = () => {
     return (
         <Routes>
             <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/category/:id" element={<Catalog/>}/>
+            {/* di sini menggunakan "id" untuk mengakses id category */}
+            <Route exact path="/category/:id" element={<Catalog/>}/> 
             <Route exact path="/user" element={<User/>}/>
             <Route exact path="/admin" element={<Admin/>}/>
             <Route exact path="/signup" element={<Signup/>}/>

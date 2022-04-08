@@ -83,9 +83,9 @@ module.exports = {
       data.image = req.file.filename
     }
 
-    if(req.body.password){
-      data.password = md5(req.body.password)
-    }
+    // if(req.body.password){
+    //   data.password = md5(req.body.password)
+    // }
     db.query(`update admin set ? where id_admin = ${id}`, data, (err, result) =>{
       if(err) throw err
       res.json({
@@ -101,6 +101,30 @@ module.exports = {
       if ((null, err)) throw err;
       res.json({
         message: "Berhasil Hapus Data",
+        data: results,
+      });
+    });
+  },
+
+  deleteProfile: (req, res) => {
+    const id = req.params.id;
+    let photo = ""
+    db.query(`update admin set image = '${photo}' where id_admin = '${id}'`, (err, results) => {
+      if ((null, err)) throw err;
+      res.json({
+        message: "Berhasil Hapus Profile",
+        data: results,
+      });
+    });
+  },
+
+  updatePw: (req, res) => {
+    let email =  req.body.email
+    let password = md5(req.body.password)
+    db.query(`update admin set password = '${password}' where email = '${email}'`, (err, results) => {
+      if ((null, err)) throw err;
+      res.json({
+        message: "Berhasil Ubah Password",
         data: results,
       });
     });
