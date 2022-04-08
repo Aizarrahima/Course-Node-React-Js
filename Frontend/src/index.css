@@ -271,3 +271,13 @@ h1 {
   font-size: small;
 }
 
+.contain{
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+#card-forgot{
+  width: 30%;
+  height: 510px;
+}
+

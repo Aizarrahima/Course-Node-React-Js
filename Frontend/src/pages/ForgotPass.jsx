@@ -39,34 +39,26 @@ export default class ForgotPass extends React.Component {
 
     render() {
         return (
-            <div className="dashboard1">
-                <div className='ms-5'>
-                    <br></br><br></br><br></br><br></br>
-                    <div className='card mb-5 mt-1' id="sign-card">
-                        <div className="card-body">
-                            <img src="/assets/techlog.png" className="mx-auto d-block mt-4 mb-5" alt="" id="logo" />
-                            <form onSubmit={(e) => this.handleSave(e)}>
-                                <div className="input-group">
-                                    <h5 className='form-text' id="sign-text">Email</h5>
-                                    <input type="email" name="email" id="typeEmailX" className='form' value={this.state.email} onChange={this.handleChange} placeholder='Your email here' required />
-                                </div>
-                                <div className="input-group">
-                                    <h5 className='form-text' id="sign-text">Password</h5>
-                                    <input type="password" name="password" id="typePasswordX" value={this.state.password} onChange={this.handleChange} className='form' placeholder='Your password here' required />
-                                </div>
-                                <div className='input-group text-center mb-4' id="sign-text">
-                                    <button type="submit" className='button-sign btn btn-dark' id="blue">Change Password</button>
-                                </div>
-                            </form>
-                        </div>
+            <div className="contain"><br /><br /><br /><br />
+
+
+                <div className="card mx-auto d-block" id="card-forgot">
+                    <div className="card-body">
+                        <img src="/assets/techlog.png" className="mx-auto d-block mt-4 mb-4" alt="" id="logo" />
+                        <h4 className='fs-2 fw-bold text-center'>Forgot Password</h4>
+                        <h5 className='fs-6 fw-light text-center mb-5'>Change your password here!</h5>
+                        <form  onSubmit={(e) => this.handleSave(e)}  className='ms-5 me-5'>
+                            <label htmlFor="" className='mb-2'>Email</label>
+                            <input type="text" className='form-control'  value={this.state.email} onChange={this.handleChange} placeholder='Input your email' name="email"/><br />
+
+                            <label htmlFor="" className='mb-2' >New Password</label>
+                            <input type="password" className='form-control' placeholder='Input your new password'  value={this.state.password} onChange={this.handleChange} name="password"/><br />
+                            <input type="submit" className='btn btn-dark w-100' id="blue" value="Change Password"/>
+                        </form>
                     </div>
-
-
-
-
-                    <br /><br /><br />
-
                 </div>
+
+
 
             </div>
         )
