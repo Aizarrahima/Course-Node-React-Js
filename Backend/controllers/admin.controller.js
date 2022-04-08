@@ -120,7 +120,10 @@ module.exports = {
 
   updatePw: (req, res) => {
     let email =  req.body.email
-    let password = md5(req.body.password)
+    let password = ""
+    if(req.body.password){
+      password =  md5(req.body.password)
+    }
     db.query(`update admin set password = '${password}' where email = '${email}'`, (err, results) => {
       if ((null, err)) throw err;
       res.json({

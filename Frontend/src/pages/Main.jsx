@@ -10,6 +10,7 @@ import Profile from './Profile';
 import Category from './Category';
 import Admin from './Admin';
 import Mentor from './Mentor';
+import ForgotPass from './ForgotPass';
 
 const Main = () => {
     
@@ -27,6 +28,7 @@ const Main = () => {
             <Route exact path="/profile" element={<Profile/>}/>
             <Route exact path="/category" element={ <Category/>}/>
             <Route exact path="/mentor" element={ <Mentor/>}/>
+            <Route exact path="/forgotPassword" element={ <ForgotPass/>}/>
         </Routes>
     );
 };
