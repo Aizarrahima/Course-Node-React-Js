@@ -174,7 +174,7 @@ class Profile extends Component {
                                         </div>
 
                                     </div>
-                                    <div className="col text-center mt-4 mb-4">
+                                    <div className="col text-center mt-4 mb-5">
                                         <input type="submit" class="btn btn-dark" value="Edit Profile" id="blue" onClick={() => this.handleEdit()} />
                                         <input type="submit" class="btn btn-dark ms-2" value="Del Photo" id="blue" onClick={() => this.handleDeleteProfile(this.state.user.id_user)} />
 
@@ -186,13 +186,6 @@ class Profile extends Component {
                         <div className="col-lg-8 col-xl-9">
                             <div className="card" id="card-profile">
                                 <div className="card-body ms-3 me-3 mt-4">
-
-                                    <div className="form-group row mb-4">
-                                        <label className="col-sm-2 col-form-label fw-bold">User ID</label>
-                                        <div className="col-sm-10">
-                                            <input type="number" name="id_admin" class="form-control" value={this.state.userId}  />
-                                        </div>
-                                    </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Name</label>
                                         <div className="col-sm-10">
@@ -215,6 +208,12 @@ class Profile extends Component {
                                         <label className="col-sm-2 col-form-label fw-bold">Address</label>
                                         <div className="col-sm-10">
                                             <input type="text" name="address" class="form-control" value={this.state.user.address} />
+                                        </div>
+                                    </div>
+                                    <div className="form-group row mb-4">
+                                        <label className="col-sm-2 col-form-label fw-bold">Level</label>
+                                        <div className="col-sm-10">
+                                            <input type="text" name="address" class="form-control" value={this.state.user.level} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">

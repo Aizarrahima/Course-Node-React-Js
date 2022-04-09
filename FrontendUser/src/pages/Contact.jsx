@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Navbar from '../component/Navbar';
-import {IoSend} from 'react-icons/io5'
 class Contact extends Component {
     render() {
         return (
