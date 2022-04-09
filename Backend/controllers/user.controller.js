@@ -3,8 +3,9 @@
 // import
 const db = require("../database");
 const md5 = require("md5");
-
-
+const auth = require("../auth")
+const jwt = require("jsonwebtoken")
+const SECRET_KEY = "COURSEWEBNODE"
 
 // endpoint
 module.exports = {
@@ -21,10 +22,11 @@ module.exports = {
   getId: (req, res) => {
     const id = req.params.id;
     db.query(`select * from user where id_user = '${id}'`, (err, results) => {
+      const user = results[0]
       if (err) throw err;
       res.json({
         message: "Berhasil Menampilkan Data",
-        data: results,
+        data: user,
       });
     });
   },
@@ -105,6 +107,33 @@ module.exports = {
     });
   },
 
+  deleteProfile: (req, res) => {
+    const id = req.params.id;
+    let photo = ""
+    db.query(`update user set image = '${photo}' where id_user = '${id}'`, (err, results) => {
+      if ((null, err)) throw err;
+      res.json({
+        message: "Berhasil Hapus Profile",
+        data: results,
+      });
+    });
+  },
+
+  updatePw: (req, res) => {
+    let email =  req.body.email
+    let password = ""
+    if(req.body.password){
+      password =  md5(req.body.password)
+    }
+    db.query(`update user set password = '${password}' where email = '${email}'`, (err, results) => {
+      if ((null, err)) throw err;
+      res.json({
+        message: "Berhasil Ubah Password",
+        data: results,
+      });
+    });
+  },
+
   find: (req, res) => {
     let find = req.body.find
     let sql = "select * from user where name like '%" + find + "%' or id_user like '%" + find + "%' or address like '%" + find + "%' or gender like '%" + find + "%' or age like '%" + find + "%' or email like '%" + find + "%' or phone like '%" + find + "%' "
@@ -118,5 +147,33 @@ module.exports = {
             })
         }
     })
-  }
+  },
+
+  login: (req, res) => {
+    let email =  req.body.email
+    let password = req.body.password
+
+    if( !email || !password) res.status(402).json({message: "email dan password harus diisi."})
+
+       db.query(`select * from user where email = '${email}'`, (err, result)=>{
+        const user = result[0]
+          if (typeof user === 'undefined'){
+            res.status(401).json({message: "User not fond"})
+          }else{
+            if(user.password === md5(password)){
+              const token = jwt.sign({data: user}, SECRET_KEY)
+              res.json({
+                logged: true,
+                data: user,
+                token: token
+              })
+            }else{
+              res.json({
+                message: "Invalid password"
+              })
+            }
+            
+          }
+        })
+  },
 };

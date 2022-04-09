@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
-import Navbar from './Navbar'
+import Navbar from '../component/Navbar'
 import axios from 'axios'
 import { Link, NavLink } from 'react-router-dom'
 

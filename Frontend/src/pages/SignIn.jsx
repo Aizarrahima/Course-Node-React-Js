@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 
 export default class SignIn extends React.Component {

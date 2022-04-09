@@ -28,5 +28,9 @@ router.post("/", upload.single("image"), userController.add)
 router.post("/find", userController.find)
 router.put("/:id", upload.single("image"),userController.update)
 router.delete("/:id", userController.delete)
+router.post("/login", userController.login)
+router.put("/delprof/:id", userController.deleteProfile)
+router.put("/", userController.updatePw)
+
 
 module.exports = router;

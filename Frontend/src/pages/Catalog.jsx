@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Card from '../component/Card'
 import $, { get } from 'jquery'
-import Navbar from './Navbar'
+import Navbar from '../component/Navbar'
 import axios from 'axios'
 import { Modal, Button, Form } from 'react-bootstrap'
 import { withRouter } from './../withRouter';

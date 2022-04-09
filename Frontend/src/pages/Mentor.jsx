@@ -1,6 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
-import Navbar from './Navbar';
+import Navbar from '../component/Navbar';
 import axios from 'axios';
 
 class Mentor extends React.Component {

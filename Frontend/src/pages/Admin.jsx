@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { Modal, Button, Form } from 'react-bootstrap';
-import Navbar from './Navbar';
+import Navbar from '../component/Navbar';
 import axios from 'axios';
 
 class Admin extends React.Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from './Navbar';
+import Navbar from '../component/Navbar';
 import axios from 'axios'
 import { Modal, Button, Form } from 'react-bootstrap'
 
@@ -61,6 +61,8 @@ class Profile extends Component {
             .catch(error => {
                 console.log(error);
             });
+            console.log(this.state.admin)
+
     }
 
     handleEdit = () => {

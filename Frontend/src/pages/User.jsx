@@ -1,6 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
-import Navbar from './Navbar';
+import Navbar from '../component/Navbar';
 import axios from 'axios';
 import { Modal, Button, Form } from 'react-bootstrap';
 

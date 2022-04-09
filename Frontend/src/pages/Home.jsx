@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import Navbar from './Navbar';
+import Navbar from '../component/Navbar';
 
 class Home extends React.Component {
   constructor() {
@@ -110,7 +110,7 @@ class Home extends React.Component {
                       <span className="block text-blue-500 xl:inline">Welcome to TechCo</span>
                     </h1>
                     <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                            Upgrade your IT skills with our platform
+                            You are now a TechCo's Admin
                     </p>
                     <div className="mt-4 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                       
