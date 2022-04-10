@@ -3,7 +3,7 @@ import Card from '../component/Card'
 import Navbar from '../component/Navbar'
 import axios from 'axios'
 import { withRouter } from './../withRouter';
-
+import CartBar from '../component/CartBar';
 class Catalog extends Component {
 
 
@@ -90,6 +90,29 @@ class Catalog extends Component {
         }
     }
 
+    addToCart = (selectedItem) => {
+        // membuat sebuah variabel untuk menampung cart sementara
+        let tempCart = []
+        // cek eksistensi dari data cart pada localStorage
+        if (localStorage.getItem("cart") !== null) {
+            tempCart = JSON.parse(localStorage.getItem("cart"))
+            // JSON.parse() digunakan untuk mengonversi dari string -> array object
+        }
+        // cek data yang dipilih user ke keranjang belanja
+        let existItem = tempCart.find(item => item.id_class === selectedItem.id_class)
+        if (existItem) {
+            // jika item yang dipilih ada pada keranjang belanja
+            window.alert("You have choose this class")
+        } else {
+           
+                // masukkan item yg dipilih ke dalam cart
+                tempCart.push(selectedItem)
+                // simpan array tempCart ke localStorage
+                localStorage.setItem("cart", JSON.stringify(tempCart))
+        }
+    }
+
+
     componentDidMount() {
         // method yang pertama kali dipanggil pada saat load page
         this.getClass()
@@ -125,13 +148,13 @@ class Catalog extends Component {
                                 // penerbit={item.penerbit}
                                 harga={item.price}
                                 cover={"http://localhost:8000/image/class/" + item.image_class}
-                                onCart=""
+                                onCart={() => this.addToCart(item)}
                             // onCart={() => this.addToCart(item)}
                             />
                         ))}
                     </div>
                 </div>
-
+                <CartBar/>
             </div>
 
         )

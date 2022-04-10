@@ -6,8 +6,8 @@ export default class SignIn extends React.Component {
   constructor() {
     super()
     this.state = {
-      email: "",
-      password: "",
+      email_user: "",
+      password_user: "",
       isModalOpen: false,
 
     }
@@ -22,14 +22,14 @@ export default class SignIn extends React.Component {
   handleLogin = (e) => {
     e.preventDefault()
     let data = {
-      email: this.state.email,
-      password: this.state.password
+      email_user: this.state.email_user,
+      password_user: this.state.password_user
     }
     let url = "http://localhost:8000/user/login"
     axios.post(url, data)
       .then(res => {
         if (res.data.logged === true) {
-          let name = res.data.data.name
+          let name = res.data.data.name_user
           let user = res.data.data
           let token = res.data.token
           let id = res.data.data.id_user
@@ -59,11 +59,11 @@ export default class SignIn extends React.Component {
               <form onSubmit={(e) => this.handleLogin(e)}>
                 <div className="input-group">
                   <h5 className='form-text' id="sign-text">Email</h5>
-                  <input type="email" name="email" id="typeEmailX" className='form' value={this.state.email} onChange={this.handleChange} placeholder='Your email here' required />
+                  <input type="email" name="email_user" id="typeEmailX" className='form' value={this.state.email_user} onChange={this.handleChange} placeholder='Your email here' required />
                 </div>
                 <div className="input-group">
                   <h5 className='form-text' id="sign-text">Password</h5>
-                  <input type="password" name="password" id="typePasswordX" value={this.state.password} onChange={this.handleChange} className='form' placeholder='Your password here' required />
+                  <input type="password" name="password_user" id="typePasswordX" value={this.state.password_user} onChange={this.handleChange} className='form' placeholder='Your password here' required />
                 </div>
                 <div className='input-group text-center mb-4' id="sign-text">
                   <button type="submit" className='button-sign btn btn-dark' id="blue">Login</button>

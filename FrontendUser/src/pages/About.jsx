@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from '../component/Navbar'
 import { NavLink } from 'react-router-dom'
+import CartBar from '../component/CartBar'
 
 export default class About extends Component {
   render() {
@@ -21,6 +22,7 @@ export default class About extends Component {
             </div>
           </div>
         </div>
+        <CartBar/>
       </div>
     )
   }

@@ -36,22 +36,22 @@ module.exports = {
 
   add: (req, res) => {
     let data = {
-      name: req.body.name,
-      address: req.body.address,
-      level: "Admin",
-      gender: req.body.gender,
-      age: req.body.age,
-      phone: req.body.phone,
-      email: req.body.email,
-      password: md5(req.body.password)
+      name_admin: req.body.name_admin,
+      address_admin: req.body.address_admin,
+      level_admin: "Admin",
+      gender_admin: req.body.gender_admin,
+      age_admin: req.body.age_admin,
+      phone_admin: req.body.phone_admin,
+      email_admin: req.body.email_admin,
+      password_admin: md5(req.body.password_admin)
     }
-    if ((!data.name, !data.email || !data.password)) {
+    if ((!data.name_admin, !data.email_admin || !data.password_admin)) {
       res.status(402).json({
         message: "Nama Petugas, Username, dan Password Harus Diisi!",
       });
     }
     if(req.file){
-      data.image = req.file.filename
+      data.img_admin = req.file.filename
       db.query(`insert into admin set ?`, data, (err, result) => {
         if(err) throw err;
         res.json({
@@ -71,16 +71,16 @@ module.exports = {
   update: (req, res) => {
     const id = req.params.id;
     let data = {
-      name: req.body.name,
-      address: req.body.address,
-      level: "Admin",
-      gender: req.body.gender,
-      age: req.body.age,
-      phone: req.body.phone,
-      email: req.body.email,
+      name_admin: req.body.name_admin,
+      address_admin: req.body.address_admin,
+      level_admin: "Admin",
+      gender_admin: req.body.gender_admin,
+      age_admin: req.body.age_admin,
+      phone_admin: req.body.phone_admin,
+      email_admin: req.body.email_admin,
     }
     if(req.file){
-      data.image = req.file.filename
+      data.img_admin = req.file.filename
     }
 
     // if(req.body.password){
@@ -109,7 +109,7 @@ module.exports = {
   deleteProfile: (req, res) => {
     const id = req.params.id;
     let photo = ""
-    db.query(`update admin set image = '${photo}' where id_admin = '${id}'`, (err, results) => {
+    db.query(`update admin set img_admin = '${photo}' where id_admin = '${id}'`, (err, results) => {
       if ((null, err)) throw err;
       res.json({
         message: "Berhasil Hapus Profile",
@@ -119,12 +119,12 @@ module.exports = {
   },
 
   updatePw: (req, res) => {
-    let email =  req.body.email
-    let password = ""
-    if(req.body.password){
-      password =  md5(req.body.password)
+    let email_admin =  req.body.email_admin
+    let password_admin = ""
+    if(req.body.password_admin){
+      password_admin =  md5(req.body.password_admin)
     }
-    db.query(`update admin set password = '${password}' where email = '${email}'`, (err, results) => {
+    db.query(`update admin set password_admin = '${password_admin}' where email_admin = '${email_admin}'`, (err, results) => {
       if ((null, err)) throw err;
       res.json({
         message: "Berhasil Ubah Password",
@@ -134,17 +134,17 @@ module.exports = {
   },
 
   login: (req, res) => {
-    let email =  req.body.email
-    let password = req.body.password
+    let email_admin =  req.body.email_admin
+    let password_admin = req.body.password_admin
 
-    if( !email || !password) res.status(402).json({message: "email dan password harus diisi."})
+    if( !email_admin || !password_admin) res.status(402).json({message: "email dan password harus diisi."})
 
-       db.query(`select * from admin where email = '${email}'`, (err, result)=>{
+       db.query(`select * from admin where email_admin = '${email_admin}'`, (err, result)=>{
         const admin = result[0]
           if (typeof admin === 'undefined'){
             res.status(401).json({message: "User not fond"})
           }else{
-            if(admin.password === md5(password)){
+            if(admin.password_admin === md5(password_admin)){
               const token = jwt.sign({data: admin}, SECRET_KEY)
               res.json({
                 logged: true,
@@ -163,7 +163,7 @@ module.exports = {
 
   find: (req, res) => {
     let find = req.body.find
-    let sql = "select * from admin where name like '%" + find + "%' or id_admin like '%" + find + "%' or address like '%" + find + "%' or gender like '%" + find + "%' or age like '%" + find + "%' or email like '%" + find + "%' or phone like '%" + find + "%' "
+    let sql = "select * from admin where name_admin like '%" + find + "%' or id_admin like '%" + find + "%' or address_admin like '%" + find + "%' or gender_admin like '%" + find + "%' or age_admin like '%" + find + "%' or email_admin like '%" + find + "%' or phone_admin like '%" + find + "%' "
     db.query(sql, (err, result) => {
         if (err) {
             throw err

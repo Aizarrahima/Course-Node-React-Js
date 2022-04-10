@@ -24,8 +24,8 @@ let upload = multer({
 
 router.get("/", adminController.getAll)
 router.get("/:id", adminController.getId)
-router.post("/", upload.single("image"), adminController.add)
-router.put("/:id", upload.single("image"),adminController.update)
+router.post("/", upload.single("img_admin"), adminController.add)
+router.put("/:id", upload.single("img_admin"),adminController.update)
 router.put("/", adminController.updatePw)
 router.put("/delprof/:id", adminController.deleteProfile)
 router.post("/login", adminController.login)

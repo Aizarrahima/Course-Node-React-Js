@@ -13,15 +13,15 @@ class User extends React.Component {
             token: "",
             id_user: 0,
             theimage: false,
-            name: "",
-            image: "",
-            address: "",
-            level: "",
-            gender: "",
-            age: 0,
-            phone: "",
-            email: "",
-            password: "",
+            name_user: "",
+            image_user: "",
+            address_user: "",
+            level_user: "",
+            gender_user: "",
+            age_user: 0,
+            phone_user: "",
+            email_user: "",
+            password_user: "",
             search: ""
         }
         if (localStorage.getItem('token')) {
@@ -100,13 +100,13 @@ class User extends React.Component {
     handleEdit = (item) => {
         this.setState({
             isModalOpen: true,
-            name: item.name,
-            image: item.image,
-            address: item.address,
-            gender: item.gender,
-            age: item.age,
-            phone: item.phone,
-            email: item.email,
+            name_user: item.name_user,
+            img_user: item.img_user,
+            address_user: item.address_user,
+            gender_user: item.gender_user,
+            age_user: item.age_user,
+            phone_user: item.phone_user,
+            email_user: item.email_user,
             id_user: item.id_user,
             action: "update"
         })
@@ -115,14 +115,14 @@ class User extends React.Component {
     handleAdd = () => {
         this.setState({
             isModalOpen: true,
-            name: "",
-            image: null,
-            address: "",
-            gender: "",
-            age: "",
-            phone: "",
-            email: "",
-            password: "",
+            name_user: "",
+            img_user: null,
+            address_user: "",
+            gender_user: "",
+            age_user: null,
+            phone_user: "",
+            email_user: "",
+            password_user: "",
             action: "insert"
         })
     }
@@ -131,14 +131,14 @@ class User extends React.Component {
         e.preventDefault()
         let form = new FormData()
 
-        form.append("name", this.state.name)
-        form.append("image", this.state.image)
-        form.append("address", this.state.address)
-        form.append("gender", this.state.gender)
-        form.append("age", this.state.age)
-        form.append("phone", this.state.phone)
-        form.append("email", this.state.email)
-        form.append("password", this.state.password)
+        form.append("name_user", this.state.name_user)
+        form.append("img_user", this.state.img_user)
+        form.append("address_user", this.state.address_user)
+        form.append("gender_user", this.state.gender_user)
+        form.append("age_user", this.state.age_user)
+        form.append("phone_user", this.state.phone_user)
+        form.append("email_user", this.state.email_user)
+        form.append("password_user", this.state.password_user)
 
         let url = ""
         if (this.state.action === "insert") {
@@ -205,12 +205,12 @@ class User extends React.Component {
                                 return (
                                     <tr key={index}>
                                         <td>{item.id_user}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.address}</td>
-                                        <td>{item.phone}</td>
-                                        <td>{item.gender}</td>
-                                        <td>{item.age}</td>
-                                        <td>{item.email}</td>
+                                        <td>{item.name_user}</td>
+                                        <td>{item.address_user}</td>
+                                        <td>{item.phone_user}</td>
+                                        <td>{item.gender_user}</td>
+                                        <td>{item.age_user}</td>
+                                        <td>{item.email_user}</td>
                                         <td>
                                             <button className="btn btn-sm btn-dark m-1" id="light" onClick={() => this.handleEdit(item)}><i className="fa fa-pencil"></i></button>
                                             <button className="btn btn-sm btn-dark m-1" id="blue" onClick={() => this.handleDrop(item.id_user)}><i className="fa fa-trash"></i></button>
@@ -234,45 +234,45 @@ class User extends React.Component {
                         <Modal.Body>
                             <Form.Group className="mb-2" controlId="name">
                                 <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" name="name" placeholder="Input name"
-                                    value={this.state.name} onChange={this.handleChange} />
+                                <Form.Control type="text" name="name_user" placeholder="Input name"
+                                    value={this.state.name_user} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="address">
                                 <Form.Label>Address</Form.Label>
-                                <Form.Control type="text" name="address" placeholder="Input address"
-                                    value={this.state.address} onChange={this.handleChange} />
+                                <Form.Control type="text" name="address_user" placeholder="Input address"
+                                    value={this.state.address_user} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="gender">
                                 <Form.Label>Gender</Form.Label>
-                                <Form.Select type="text" name="gender" onChange={this.handleChange} >
-                                    <option value={this.state.gender}>{this.state.gender}</option>
+                                <Form.Select type="text" name="gender_user" onChange={this.handleChange} >
+                                    <option value={this.state.gender_user}>{this.state.gender_user}</option>
                                     <option value="P">Female</option>
                                     <option value="L">Male</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="age">
                                 <Form.Label>Age</Form.Label>
-                                <Form.Control type="number" name="age" placeholder="Input Age"
-                                    value={this.state.age} onChange={this.handleChange} />
+                                <Form.Control type="number" name="age_user" placeholder="Input Age"
+                                    value={this.state.age_user} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="phone">
                                 <Form.Label>Phone</Form.Label>
-                                <Form.Control type="text" name="phone" placeholder="Input phonenumber" value={this.state.phone}
+                                <Form.Control type="text" name="phone_user" placeholder="Input phonenumber" value={this.state.phone_user}
                                     onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="image">
                                 <Form.Label>Image</Form.Label>
-                                <Form.Control type="file" name="image" placeholder="Input image"
+                                <Form.Control type="file" name="img_user" placeholder="Input image"
                                     onChange={this.handleFile} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="email">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" name="email" value={this.state.email} placeholder="Masukkan gambar"
+                                <Form.Control type="email" name="email_user" value={this.state.email_user} placeholder="Masukkan gambar"
                                     onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="password">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" name="password" value={this.state.password} placeholder="Masukkan password"
+                                <Form.Control type="password" name="password_user" value={this.state.password_user} placeholder="Masukkan password"
                                     onChange={this.handleChange} />
                             </Form.Group>
                         </Modal.Body>

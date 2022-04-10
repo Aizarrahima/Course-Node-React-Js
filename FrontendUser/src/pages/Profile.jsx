@@ -15,15 +15,15 @@ class Profile extends Component {
             id_user: 0,
             theimage: false,
             iconGender: false,
-            name: "",
-            image: "",
-            address: "",
-            level: "",
-            gender: "",
-            age: 0,
-            phone: "",
-            email: "",
-            password: ""
+            name_user: "",
+            img_user: "",
+            address_user: "",
+            level_user: "",
+            gender_user: "",
+            age_user: 0,
+            phone_user: "",
+            email_user: "",
+            password_user: ""
         }
 
         if (localStorage.getItem('token')) {
@@ -67,14 +67,14 @@ class Profile extends Component {
         this.setState({
             isModalOpen: true,
             id_user: this.state.user.id_user,
-            name: this.state.user.name,
-            image: this.state.user.image,
-            address: this.state.user.address,
-            gender: this.state.user.gender,
-            age: this.state.user.age,
-            phone: this.state.user.phone,
-            email: this.state.user.email,
-            password: this.state.user.password
+            name_user: this.state.user.name_user,
+            img_user: this.state.user.img_user,
+            address_user: this.state.user.address_user,
+            gender_user: this.state.user.gender_user,
+            age_user: this.state.user.age_user,
+            phone_user: this.state.user.phone_user,
+            email_user: this.state.user.email_user,
+            password_user: this.state.user.password_user
         })
     }
 
@@ -82,13 +82,13 @@ class Profile extends Component {
     handleSave = (e) => {
         e.preventDefault()
         let form = new FormData()
-        form.append("name", this.state.name)
-        form.append("image", this.state.image)
-        form.append("address", this.state.address)
-        form.append("gender", this.state.gender)
-        form.append("age", this.state.age)
-        form.append("phone", this.state.phone)
-        form.append("email", this.state.email)
+        form.append("name_user", this.state.name_user)
+        form.append("img_user", this.state.img_user)
+        form.append("address_user", this.state.address_user)
+        form.append("gender_user", this.state.gender_user)
+        form.append("age_user", this.state.age_user)
+        form.append("phone_user", this.state.phone_user)
+        form.append("email_user", this.state.email_user)
         // form.append("password", this.state.password)
 
         axios.put(`http://localhost:8000/user/${this.state.userId}`, form)
@@ -112,7 +112,7 @@ class Profile extends Component {
 
     handleFile = (e) => {
         this.setState({
-            image: e.target.files[0]
+            img_user: e.target.files[0]
         })
     }
 
@@ -151,16 +151,16 @@ class Profile extends Component {
 
                                     <div className="media mb-5 mt-4 ">
 
-                                        {this.state.user.image ? <img src={"http://localhost:8000/image/user/" + this.state.user.image} alt="" className='profile-img mx-auto d-block mb-2' /> : <img src="/assets/defaultprofile.jpeg" alt="" className='profile-img mx-auto d-block mb-2' />}
+                                        {this.state.user.img_user ? <img src={"http://localhost:8000/image/user/" + this.state.user.img_user} alt="" className='profile-img mx-auto d-block mb-2' /> : <img src="/assets/defaultprofile.jpeg" alt="" className='profile-img mx-auto d-block mb-2' />}
 
-                                        <h4 className='display-7 fw-bold text-center'>{this.state.user.name}</h4>
-                                        <h6 className='fs-6 fw-light text-center'>{this.state.user.level}</h6>
+                                        <h4 className='display-7 fw-bold text-center'>{this.state.user.name_user}</h4>
+                                        <h6 className='fs-6 fw-light text-center'>{this.state.user.level_user}</h6>
                                     </div>
                                     <div className="row mb-4">
                                         <div className="col">
                                             <div className="card" id="loc-card">
                                                 <span className='text-center mb-2'><i className="fa fa-map-marker" id="loc-icon"></i></span>
-                                                <h5 className='display-7 fw-bold text-center'>{this.state.user.address}</h5>
+                                                <h5 className='display-7 fw-bold text-center'>{this.state.user.address_user}</h5>
                                                 <h6 className='fs-6 fw-light text-center mb-4'>Address</h6>
                                             </div>
 
@@ -168,7 +168,7 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="card" id="loc-card">
                                                 <span className='text-center mb-2'><i className="fa fa-venus-mars" id="loc-icon"></i></span>
-                                                <h5 className='display-7 fw-bold text-center'>{this.state.user.gender}</h5>
+                                                <h5 className='display-7 fw-bold text-center'>{this.state.user.gender_user}</h5>
                                                 <h6 className='fs-6 fw-light text-center mb-4'>Gender</h6>
                                             </div>
                                         </div>
@@ -189,49 +189,49 @@ class Profile extends Component {
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Name</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="name" class="form-control" value={this.state.user.name} onChange={this.handleChange} />
+                                            <input type="text" name="name" class="form-control" value={this.state.user.name_user} onChange={this.handleChange} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Phone</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="phone" class="form-control" value={this.state.user.phone} />
+                                            <input type="text" name="phone" class="form-control" value={this.state.user.phone_user} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Gender</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="gender" class="form-control" value={this.state.user.gender} />
+                                            <input type="text" name="gender" class="form-control" value={this.state.user.gender_user} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Address</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="address" class="form-control" value={this.state.user.address} />
+                                            <input type="text" name="address" class="form-control" value={this.state.user.address_user} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Level</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="address" class="form-control" value={this.state.user.level} />
+                                            <input type="text" name="address" class="form-control" value={this.state.user.level_user} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Age</label>
                                         <div className="col-sm-10">
-                                            <input type="number" name="age" class="form-control" value={this.state.user.age} />
+                                            <input type="number" name="age" class="form-control" value={this.state.user.age_user} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Email</label>
                                         <div className="col-sm-10">
-                                            <input type="email" name="email" class="form-control" value={this.state.user.email} />
+                                            <input type="email" name="email" class="form-control" value={this.state.user.email_user} />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Password</label>
                                         <div className="col-sm-10">
-                                            <input type="password" name="password" class="form-control" value={this.state.user.password} />
+                                            <input type="password" name="password" class="form-control" value={this.state.user.password_user} />
                                         </div>
                                     </div>
 
@@ -249,40 +249,40 @@ class Profile extends Component {
                         <Modal.Body>
                             <Form.Group className="mb-2" controlId="name">
                                 <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" name="name" placeholder="Input name"
-                                    value={this.state.name} onChange={this.handleChange} />
+                                <Form.Control type="text" name="name_user" placeholder="Input name"
+                                    value={this.state.name_user} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="address">
                                 <Form.Label>Address</Form.Label>
-                                <Form.Control type="text" name="address" placeholder="Input address"
-                                    value={this.state.address} onChange={this.handleChange} />
+                                <Form.Control type="text" name="address_user" placeholder="Input address"
+                                    value={this.state.address_user} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="gender">
                                 <Form.Label>Gender</Form.Label>
-                                <Form.Select type="text" name="gender" onChange={this.handleChange} >
-                                    <option value={this.state.gender}>{this.state.gender}</option>
+                                <Form.Select type="text" name="gender_user" onChange={this.handleChange} >
+                                    <option value={this.state.gender_user}>{this.state.gender_user}</option>
                                     <option value="P">Female</option>
                                     <option value="L">Male</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="age">
                                 <Form.Label>Age</Form.Label>
-                                <Form.Control type="number" name="age" placeholder="Input Age"
-                                    value={this.state.age} onChange={this.handleChange} />
+                                <Form.Control type="number" name="age_user" placeholder="Input Age"
+                                    value={this.state.age_user} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="phone">
                                 <Form.Label>Phone</Form.Label>
-                                <Form.Control type="text" name="phone" placeholder="Input phonenumber" value={this.state.phone}
+                                <Form.Control type="text" name="phone_user" placeholder="Input phonenumber" value={this.state.phone_user}
                                     onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="image">
                                 <Form.Label>Image</Form.Label>
-                                <Form.Control type="file" name="image" placeholder="Input image"
+                                <Form.Control type="file" name="img_user" placeholder="Input image"
                                     onChange={this.handleFile} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="email">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" name="email" value={this.state.email} placeholder="Masukkan gambar"
+                                <Form.Control type="email" name="email_user" value={this.state.email_user} placeholder="Masukkan gambar"
                                     onChange={this.handleChange} />
                             </Form.Group>
                             {/* <Form.Group className="mb-2" controlId="password">

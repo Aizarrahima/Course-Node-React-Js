@@ -289,3 +289,50 @@ h1 {
 #text-blue{
   color: #1a1774;
 }
+
+.sosbar a:hover{
+    color: #FFFFFF;
+    background-color: #1a1774;
+    box-shadow: 2px 2px 12px rgb(0, 0, 0, 0.2);
+    transition: all ease 0.5s;
+}
+
+.sosbar a:hover i{
+    color: #FFFFFF;
+    transition: all ease 0.5s;
+}
+
+.sosbar{
+    position: fixed;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+}
+
+.sosbar a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    line-height: 0px;
+    background-color: #FFFFFF;
+    border: 1px solid #cbcbcb;
+    box-shadow: 2px 2px 12px rgb(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+
+.sosbar i{
+    color: #1a1774;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#img-cart{
+  width: 150px;
+  height: 200px;
+  border-radius: 5px;
+  border-color: transparent;
+}

@@ -24,9 +24,9 @@ let upload = multer({
 
 router.get("/", userController.getAll)
 router.get("/:id", userController.getId)
-router.post("/", upload.single("image"), userController.add)
+router.post("/", upload.single("img_user"), userController.add)
 router.post("/find", userController.find)
-router.put("/:id", upload.single("image"),userController.update)
+router.put("/:id", upload.single("img_user"),userController.update)
 router.delete("/:id", userController.delete)
 router.post("/login", userController.login)
 router.put("/delprof/:id", userController.deleteProfile)

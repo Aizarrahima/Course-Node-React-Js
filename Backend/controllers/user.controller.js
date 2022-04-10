@@ -33,22 +33,22 @@ module.exports = {
 
   add: (req, res) => {
     let data = {
-      name: req.body.name,
-      address: req.body.address,
-      level: "User",
-      gender: req.body.gender,
-      age: req.body.age,
-      phone: req.body.phone,
-      email: req.body.email,
-      password: md5(req.body.password)
+      name_user: req.body.name_user,
+      address_user: req.body.address_user,
+      level_user: "User",
+      gender_user: req.body.gender_user,
+      age_user: req.body.age_user,
+      phone_user: req.body.phone_user,
+      email_user: req.body.email_user,
+      password_user: md5(req.body.password_user)
     }
-    if ((!data.name, !data.email || !data.password)) {
+    if ((!data.name_user, !data.email_user || !data.password_user)) {
       res.status(402).json({
         message: "Nama User, Username, dan Password Harus Diisi!",
       });
     }
     if(req.file){
-      data.image = req.file.filename
+      data.img_user = req.file.filename
       db.query(`insert into user set ?`, data, (err, result) => {
         if(err) throw err;
         res.json({
@@ -68,16 +68,16 @@ module.exports = {
   update: (req, res) => {
     const id = req.params.id;
     let data = {
-      name: req.body.name,
-      address: req.body.address,
-      level: "User",
-      gender: req.body.gender,
-      age: req.body.age,
-      phone: req.body.phone,
-      email: req.body.email,
+      name_user: req.body.name_user,
+      address_user: req.body.address_user,
+      level_user: "User",
+      gender_user: req.body.gender_user,
+      age_user: req.body.age_user,
+      phone_user: req.body.phone_user,
+      email_user: req.body.email_user,
     }
     if(req.file){
-      data.image = req.file.filename
+      data.img_user = req.file.filename
       db.query(`update user set ? where id_user = ${id}`, data, (err, result) =>{
         if(err) throw err
         res.json({
@@ -110,7 +110,7 @@ module.exports = {
   deleteProfile: (req, res) => {
     const id = req.params.id;
     let photo = ""
-    db.query(`update user set image = '${photo}' where id_user = '${id}'`, (err, results) => {
+    db.query(`update user set img_user = '${photo}' where id_user = '${id}'`, (err, results) => {
       if ((null, err)) throw err;
       res.json({
         message: "Berhasil Hapus Profile",
@@ -120,12 +120,12 @@ module.exports = {
   },
 
   updatePw: (req, res) => {
-    let email =  req.body.email
-    let password = ""
-    if(req.body.password){
-      password =  md5(req.body.password)
+    let email_user =  req.body.email_user
+    let password_user = ""
+    if(req.body.password_user){
+      password_user =  md5(req.body.password_user)
     }
-    db.query(`update user set password = '${password}' where email = '${email}'`, (err, results) => {
+    db.query(`update user set password_user = '${password_user}' where email_user = '${email_user}'`, (err, results) => {
       if ((null, err)) throw err;
       res.json({
         message: "Berhasil Ubah Password",
@@ -136,7 +136,7 @@ module.exports = {
 
   find: (req, res) => {
     let find = req.body.find
-    let sql = "select * from user where name like '%" + find + "%' or id_user like '%" + find + "%' or address like '%" + find + "%' or gender like '%" + find + "%' or age like '%" + find + "%' or email like '%" + find + "%' or phone like '%" + find + "%' "
+    let sql = "select * from user where name_user like '%" + find + "%' or id_user like '%" + find + "%' or address_user like '%" + find + "%' or gender_user like '%" + find + "%' or age_user like '%" + find + "%' or email_user like '%" + find + "%' or phone_user like '%" + find + "%' "
     db.query(sql, (err, result) => {
         if (err) {
             throw err
@@ -150,17 +150,17 @@ module.exports = {
   },
 
   login: (req, res) => {
-    let email =  req.body.email
-    let password = req.body.password
+    let email_user =  req.body.email_user
+    let password_user = req.body.password_user
 
-    if( !email || !password) res.status(402).json({message: "email dan password harus diisi."})
+    if( !email_user || !password_user) res.status(402).json({message: "email dan password harus diisi."})
 
-       db.query(`select * from user where email = '${email}'`, (err, result)=>{
+       db.query(`select * from user where email_user = '${email_user}'`, (err, result)=>{
         const user = result[0]
           if (typeof user === 'undefined'){
             res.status(401).json({message: "User not fond"})
           }else{
-            if(user.password === md5(password)){
+            if(user.password_user === md5(password_user)){
               const token = jwt.sign({data: user}, SECRET_KEY)
               res.json({
                 logged: true,

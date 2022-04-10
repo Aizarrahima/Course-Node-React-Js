@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import Navbar from '../component/Navbar'
 import axios from 'axios'
+import CartBar from '../component/CartBar';
 import { Link, NavLink } from 'react-router-dom'
 
 export default class Category extends Component {
@@ -110,7 +111,7 @@ export default class Category extends Component {
                         })}
                     </div>
                 </div>
-                
+                <CartBar/>
             </div>
         )
     }

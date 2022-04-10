@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Navbar from '../component/Navbar';
+import CartBar from '../component/CartBar';
 
 class Home extends React.Component {
   constructor() {
@@ -141,6 +142,7 @@ class Home extends React.Component {
             
           </div>
           </div>
+          <CartBar/>
           </div>
         );
     }

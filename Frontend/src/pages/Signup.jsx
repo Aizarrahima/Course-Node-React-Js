@@ -7,9 +7,9 @@ export default class Signup extends Component {
   constructor() {
     super()
     this.state = {
-      name: "",
-      email: "",
-      password: ""
+      name_admin: "",
+      email_admin: "",
+      password_admin: ""
     }
   }
 
@@ -22,9 +22,9 @@ export default class Signup extends Component {
   handleRegister = (e) =>{
     e.preventDefault()
     let data = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password
+      name_admin: this.state.name_admin,
+      email_admin: this.state.email_admin,
+      password_admin: this.state.password_admin
     }
     let url = "http://localhost:8000/admin/"
     axios.post(url, data)
@@ -47,15 +47,15 @@ export default class Signup extends Component {
               <form onSubmit={(e) => this.handleRegister(e)}>
               <div className="input-group">
                 <h5 className='form-text' id="sign-text">Name</h5>
-                <input type="text" name="name" id="name" className='form' value={this.state.name} onChange={this.handleChange}/>
+                <input type="text" name="name_admin" id="name" className='form' value={this.state.name_admin} onChange={this.handleChange}/>
               </div>
               <div className="input-group">
                 <h5 className='form-text' id="sign-text">Email</h5>
-                <input type="email" name="email" id="email" className='form' value={this.state.email} onChange={this.handleChange}/>
+                <input type="email" name="email_admin" id="email" className='form' value={this.state.email_admin} onChange={this.handleChange}/>
               </div>
               <div className="input-group">
                 <h5 className='form-text' id="sign-text">Password</h5>
-                <input type="password" name="password" id="password" className='form' value={this.state.password} onChange={this.handleChange}/>
+                <input type="password" name="password_admin" id="password" className='form' value={this.state.password_admin} onChange={this.handleChange}/>
               </div>
               <div className='input-group text-center' id="sign-text">
                 <button type="submit" className='button-sign btn btn-dark' id="light">Sign Up</button>

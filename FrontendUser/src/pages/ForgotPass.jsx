@@ -7,8 +7,8 @@ export default class ForgotPass extends React.Component {
     constructor() {
         super()
         this.state = {
-            email: "",
-            password: "",
+            email_user: "",
+            password_user: "",
 
         }
     }
@@ -23,8 +23,8 @@ export default class ForgotPass extends React.Component {
     handleSave = (e) => {
         e.preventDefault()
         let data = {
-            email: this.state.email,
-            password: this.state.password
+            email_user: this.state.email_user,
+            password_user: this.state.password_user
         }
         if (window.confirm("Are you sure to change password?")) {
             axios.put("http://localhost:8000/user/", data)
@@ -49,10 +49,10 @@ export default class ForgotPass extends React.Component {
                         <h5 className='fs-6 fw-light text-center mb-5'>Change your password here!</h5>
                         <form  onSubmit={(e) => this.handleSave(e)}  className='ms-5 me-5'>
                             <label htmlFor="" className='mb-2'>Email</label>
-                            <input type="text" className='form-control'  value={this.state.email} onChange={this.handleChange} placeholder='Input your email' name="email"/><br />
+                            <input type="text" className='form-control'  value={this.state.email_user} onChange={this.handleChange} placeholder='Input your email' name="email_user"/><br />
 
                             <label htmlFor="" className='mb-2' >New Password</label>
-                            <input type="password" className='form-control' placeholder='Input your new password'  value={this.state.password} onChange={this.handleChange} name="password"/><br />
+                            <input type="password" className='form-control' placeholder='Input your new password'  value={this.state.password_user} onChange={this.handleChange} name="password_user"/><br />
                             <input type="submit" className='btn btn-dark w-100' id="blue" value="Change Password"/>
                         </form>
                     </div>

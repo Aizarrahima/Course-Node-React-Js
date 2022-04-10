@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../component/Navbar';
+import CartBar from '../component/CartBar';
+
 class Contact extends Component {
     render() {
         return (
@@ -36,6 +38,7 @@ class Contact extends Component {
                     </div>
                 </div>
             </div>
+            <CartBar/>
         </div>
         );
     }

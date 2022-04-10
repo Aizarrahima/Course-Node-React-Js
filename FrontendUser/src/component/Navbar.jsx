@@ -5,7 +5,10 @@ export default class Navbar extends Component {
  out = () => {
   if (window.confirm("Are you sure to logout?")) {
    window.location = '/signin'
-   localStorage.clear()
+   localStorage.removeItem("name");
+   localStorage.removeItem("user");
+   localStorage.removeItem("token");
+   localStorage.removeItem("id");
   }
  }
   
