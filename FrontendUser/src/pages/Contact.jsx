@@ -3,6 +3,15 @@ import Navbar from '../component/Navbar';
 import CartBar from '../component/CartBar';
 
 class Contact extends Component {
+    constructor (){
+        super()
+        if(localStorage.getItem('token')){
+            this.state.token = localStorage.getItem('token')
+            this.state.userName = localStorage.getItem('name')
+          }else{
+            window.location = '/signin'
+          }
+    }
     render() {
         return (
             <div>

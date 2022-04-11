@@ -31,6 +31,7 @@ app.use("/admin", require("./routes/admin.route"));
 app.use("/user", require("./routes/user.route"));
 app.use("/mentor", require("./routes/mentor.route"));
 app.use("/class", require("./routes/class.route"));
+app.use("/transaksi", require("./routes/transaksi.route"));
 
 const port = 8000;
 app.listen(port, () => console.log(`App running ${port}`));

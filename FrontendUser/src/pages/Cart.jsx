@@ -7,10 +7,15 @@ class Cart extends Component {
         super()
         this.state = {
             cart: [], // untuk menyimpan list cart
-            user: "", // untuk menyimpan data nama user
+            user: "",
             total: 0, // untuk menyimpan data total belanja
             isCart: false
         }
+        if(localStorage.getItem('token')){
+            this.state.token = localStorage.getItem('token')
+          }else{
+            window.location = '/signin'
+          }
 
     }
 

@@ -133,15 +133,15 @@ module.exports = {
 
     find: (req, res) => {
         let find = req.body.find
-        const id = req.params.id
-        let sql = "select * from class where name_class like '%" + find + "%' and id_category  "
-        db.query(sql, (err, result) => {
+        const id = req.params.id 
+        let sql = "select * from class where name_class like '%" + find + "%' and id_category = ? "
+        db.query(sql, id, (err, result) => {
             if (err) {
                 throw err
             } else {
                 
                 res.json({
-                  result
+                  result, sql
                 })
             }
         })

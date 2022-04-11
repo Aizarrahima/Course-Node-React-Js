@@ -40,7 +40,11 @@ class Catalog extends Component {
         console.log(this.state.id_category);
     }
 
-
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
 
     getCategory = () => {
         let url = "http://localhost:8000/course/"
@@ -71,7 +75,7 @@ class Catalog extends Component {
     }
 
     findClass = (event) => {
-        let url = "http://localhost:8000/class/find";
+        let url = "http://localhost:8000/class/find/" + this.state.id_category;
         if (event.keyCode === 13) {
             // menampung data keyword pencarian
             let form = {

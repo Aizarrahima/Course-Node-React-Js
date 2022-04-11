@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from '../component/Navbar'
+import axios from 'axios'
 
 export default class Checkout extends Component {
 
@@ -7,9 +8,54 @@ export default class Checkout extends Component {
         super()
         this.state = {
             cart: [], // untuk menyimpan list cart
-            user: "", // untuk menyimpan data nama user
+            user: "",
+            id_user: 0, // untuk menyimpan data nama user
             total: 0, // untuk menyimpan data total belanja
             isCart: false
+        }
+
+        if (localStorage.getItem('token')) {
+            this.state.token = localStorage.getItem('token')
+            this.state.userName = localStorage.getItem('name')
+            this.state.id_user = localStorage.getItem('id')
+        } else {
+            window.location = '/signin'
+        }
+
+
+    }
+
+    checkOut = () => {
+        if (localStorage.getItem("cart") !== null) {
+            let data = {
+                id_user: this.state.id_user,
+                id_class: 0
+
+            }
+            let url = "http://localhost:8000/transaksi/"
+            {
+                this.state.cart.map((item, index) =>
+                (
+                    data.id_class = item.id_class,
+                    axios.post(url, data)
+                        .then(response => {
+                            // clear cart
+                            window.alert("Success Checkout")
+                            localStorage.removeItem("cart")
+                            this.initCart()
+                            // window.location = "/transaction"
+                        })
+                        .catch(error => {
+
+                            console.log(error);
+                        })
+                ))
+            }
+
+
+            // {this.state.cart.map((item, index) =>
+            //     (
+
         }
 
     }
@@ -37,6 +83,7 @@ export default class Checkout extends Component {
 
     componentDidMount() {
         this.initCart()
+        this.checkOut()
     }
 
     render() {
@@ -69,7 +116,7 @@ export default class Checkout extends Component {
                             </ul>
 
                             <div className="card p-2">
-                                <button className="btn btn-dark btn-lg w-100" id="blue">Continue to checkout</button>
+                                <button className="btn btn-dark btn-lg w-100" id="blue" onClick={() => this.checkOut()}>Continue to checkout</button>
                                 {/* <NavLink to="/success" className="btn btn-dark btn-lg w-100" id="light">Continue to checkout</NavLink> */}
                             </div>
                         </div>

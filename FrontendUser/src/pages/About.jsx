@@ -4,6 +4,15 @@ import { NavLink } from 'react-router-dom'
 import CartBar from '../component/CartBar'
 
 export default class About extends Component {
+  constructor (){
+    super()
+    if(localStorage.getItem('token')){
+        this.state.token = localStorage.getItem('token')
+        this.state.userName = localStorage.getItem('name')
+      }else{
+        window.location = '/signin'
+      }
+}
   render() {
     return (
         <div>
