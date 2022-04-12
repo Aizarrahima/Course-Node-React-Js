@@ -26,11 +26,8 @@ export default class Category extends Component {
         }
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+    
+
 
     getCategory = () => {
         let url = "http://localhost:8000/course/"
@@ -46,8 +43,7 @@ export default class Category extends Component {
     }
 
     
-
-   
+    
 
     findCategory = (event) => {
         let url = "http://localhost:8000/course/find";

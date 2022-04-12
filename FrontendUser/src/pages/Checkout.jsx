@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar from '../component/Navbar'
 import axios from 'axios'
 
+
 export default class Checkout extends Component {
 
     constructor() {
@@ -11,8 +12,13 @@ export default class Checkout extends Component {
             user: "",
             id_user: 0, // untuk menyimpan data nama user
             total: 0, // untuk menyimpan data total belanja
-            isCart: false
+            isCart: false,
+            tanggal_transaksi: null,
+            now: new Date()
         }
+        const moment = require('moment');
+        this.state.tanggal_transaksi = moment(this.state.now).format('YYYY-MM-DD');
+
 
         if (localStorage.getItem('token')) {
             this.state.token = localStorage.getItem('token')
@@ -27,31 +33,44 @@ export default class Checkout extends Component {
 
     checkOut = () => {
         if (localStorage.getItem("cart") !== null) {
-            let data = {
+            let dt = {
                 id_user: this.state.id_user,
+            }
+            let detail = {
+                id_transaksi: 0,
                 id_class: 0
-
             }
-            let url = "http://localhost:8000/transaksi/"
-            {
-                this.state.cart.map((item, index) =>
-                (
-                    data.id_class = item.id_class,
-                    axios.post(url, data)
-                        .then(response => {
-                            // clear cart
-                            window.alert("Success Checkout")
-                            localStorage.removeItem("cart")
-                            this.initCart()
-                            // window.location = "/transaction"
-                        })
-                        .catch(error => {
+            let id_transaksi = 0
+            axios.post("http://localhost:8000/transaksi/", dt)
+                .then(response => {
+                    id_transaksi = response.data.id_transaksi
+                    {this.state.cart.map((item, index) =>
+                        (
+                            detail.id_class = item.id_class,
+                            detail.id_transaksi = id_transaksi,
+                            axios.post("http://localhost:8000/transaksi/addDetail", detail)
+                                .then(response => {
+                                    // clear cart
+        
+                                    // window.location = "/transaction"
+                                })
+                                .catch(error => {
+        
+                                    console.log(error);
+                                })
+                        ))
+                    }
+                    window.alert("Success Checkout")
+                    localStorage.removeItem("cart")
+                    this.initCart()
+                    window.location = `/payment/${detail.id_transaksi}`
+                })
+                .catch(error => {
 
-                            console.log(error);
-                        })
-                ))
-            }
-
+                    console.log(error);
+                })
+            
+           
 
             // {this.state.cart.map((item, index) =>
             //     (
@@ -83,7 +102,6 @@ export default class Checkout extends Component {
 
     componentDidMount() {
         this.initCart()
-        this.checkOut()
     }
 
     render() {
@@ -93,8 +111,10 @@ export default class Checkout extends Component {
                 <div className="container my-5 py-5" >
                     <div className="row g-5">
                         <div className="col-md-12 col-lg-12 order-md-last">
+                        <h5 id="t-dark">{this.state.user}'s Bill</h5>
+                            
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
-                                <span id="t-dark">{this.state.user}'s cart</span>
+                            <h6 id="t-dark" className='mb-3 fw-normal'>Transaction at {this.state.tanggal_transaksi}</h6>
                                 <span className="badge rounded-pill" id="blue">{this.state.cart.length}</span>
                             </h4>
                             <ul className="list-group ">
@@ -112,6 +132,12 @@ export default class Checkout extends Component {
                                 <li className="list-group-item d-flex justify-content-between">
                                     <span>Total (Rp)</span>
                                     <strong>Rp {this.state.total},00</strong>
+                                </li>
+                                <li className="list-group-item d-flex justify-content-between">
+                                    <div>
+                                        <h6 className="my-0">Payment</h6>
+                                        <span className="text-muted">Transfer at Bank BCA a.n TechCo Company 9910 6382 0012</span>
+                                    </div>
                                 </li>
                             </ul>
 

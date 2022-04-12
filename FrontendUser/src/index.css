@@ -281,6 +281,11 @@ h1 {
   height: 510px;
 }
 
+#card-proof{
+  width: 30%;
+  height: 430px;
+}
+
 #illusContact{
   margin-left: 30%;
   margin-top: -7%;
