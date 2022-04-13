@@ -43,6 +43,8 @@ export default class Category extends Component {
     }
 
     
+
+    
     
 
     findCategory = (event) => {
@@ -65,7 +67,11 @@ export default class Category extends Component {
         }
     }
 
-
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
     
 
 
@@ -85,9 +91,7 @@ export default class Category extends Component {
                             <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Category..." id="search" value={this.state.search} onChange={this.handleChange} onKeyUp={this.findCategory} />
 
                         </div>
-                        <div className="col-3 mt-5">
-                            <button onClick={() => this.handleAdd()} className="btn btn-dark" id="btn-blue">Add Data</button>
-                        </div>
+                    
                     </div>
                     <div className="row ">
                         {this.state.category.map((item, index) => {

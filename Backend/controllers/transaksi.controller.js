@@ -92,6 +92,67 @@ bayar: (req, res) => {
   })
 },
 
+myclass: (req, res) => {
+  const id = req.params.id_user;
+  let status = "LUNAS"
+  db.query(`select * from transaksi join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi join class on detail_transaksi.id_class = class.id_class join category on class.id_category = category.id_category where transaksi.status_transaksi = "${status}" AND transaksi.id_user = ${id} `, (err, results) => {
+    if (err) throw err;
+    res.json({
+      message: "Data Kategori",
+      data: results
+    })
+  })
+},
+
+detail: (req, res) => {
+  const id_user = req.params.id_user;
+  const id_class = req.params.id_class;
+  let status = "LUNAS"
+  db.query(`select * from transaksi join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi join class on detail_transaksi.id_class = class.id_class join category on class.id_category = category.id_category where transaksi.status_transaksi = "${status}" AND transaksi.id_user = ${id_user} AND detail_transaksi.id_class = ${id_class} `, (err, results) => {
+    if (err) throw err;
+    res.json({
+      message: "Data Kategori",
+      data: results[0]
+    })
+  })
+},
+
+find: (req, res) => {
+  let find = req.body.find
+  const id = req.params.id
+  let sql = "select * from transaksi join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi join class on detail_transaksi.id_class = class.id_class join category on class.id_category = category.id_category where class.name_class like '%" + find + "%' or category.name like '%" + find + "%' and transaksi.id_user = ? "
+  db.query(sql, id, (err, result) => {
+      if (err) {
+          throw err
+      } else {
+          res.json({
+            result
+          })
+      }
+  })
+},
+
+getUser: (req, res) => {
+  db.query(`select * from transaksi join user on transaksi.id_user = user.id_user GROUP BY user.name_user`, (err, results) => {
+      if (err) throw err;
+      res.json({
+          message: "Success transaction",
+          results
+      })
+  })
+},
+
+findUser: (req, res) => {
+  let find = req.body.find
+  db.query("select name_user, user.id_user, email_user, phone_user from user join transaksi on transaksi.id_user = user.id_user where name_user like '%" + find + "%' or user.id_user like '%" + find + "%'or user.email_user like '%" + find + "%' or user.phone_user like '%" + find + "%' GROUP BY user.name_user", (err, results) => {
+      if (err) throw err;
+      res.json({
+          message: "Success transaction",
+          results
+      })
+  })
+},
+
 
 
 };

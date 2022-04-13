@@ -28,11 +28,12 @@ module.exports = {
 
     getId: (req, res) => {
         const id = req.params.id;
-        db.query(`select * from class where id_class = ${id}`, (err, results) => {
+        db.query(`select * from class join category on class.id_category = category.id_category where id_class = ${id}`, (err, results) => {
+
             if (err) throw err;
             res.json({
                 message: "Berhasil menampilkan data",
-                data: results,
+                data: results[0]
             });
         });
     },
@@ -60,6 +61,7 @@ module.exports = {
                 description_class: req.body.description_class,
                 price: req.body.price,
                 id_category: req.body.id_category,
+                link_class: req.body.link_class
             };
             db.query(`select * from category where id_category = ${data.id_category}`, (err, result) => {
                 if (err) {
@@ -90,7 +92,8 @@ module.exports = {
             name_class: req.body.name_class,
             description_class: req.body.description_class,
             price: req.body.price,
-            id_category: req.body.id_category
+            id_category: req.body.id_category,
+            link_class: req.body.link_class
         };
         db.query(`select * from category where id_category = ${data.id_category}`, (err, result) => {
             if (err) throw err;

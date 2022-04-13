@@ -265,11 +265,13 @@ class Admin extends React.Component {
                                 <Form.Control type="email" name="email_admin" value={this.state.email_admin} placeholder="Masukkan gambar"
                                     onChange={this.handleChange} />
                             </Form.Group>
-                            <Form.Group className="mb-2" controlId="password">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" name="password_admin" value={this.state.password_admin} placeholder="Masukkan password"
-                                    onChange={this.handleChange} />
-                            </Form.Group>
+                            {this.state.action === "inser" &&
+                                <Form.Group className="mb-2" controlId="password">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" name="password_admin" value={this.state.password_admin} placeholder="Masukkan password"
+                                        onChange={this.handleChange} />
+                                </Form.Group>
+                            }
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="dark" type="submit" id="blue">

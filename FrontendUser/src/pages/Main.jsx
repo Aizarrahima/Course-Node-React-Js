@@ -13,6 +13,9 @@ import About from './About';
 import Cart from './Cart';
 import Checkout from './Checkout';
 import Payment from './Payment';
+import Success from './Success';
+import MyClass from './MyClass';
+import DetailMyClass from './DetailMyClass';
 
 const Main = () => {
     return (
@@ -31,6 +34,9 @@ const Main = () => {
             <Route path="/checkout" element={ <Checkout/>}/>
             <Route path="/cart" element={ <Cart/>}/>
             <Route path="/payment/:id_transaksi" element={ <Payment/>}/>
+            <Route path="/success" element={ <Success/>}/>
+            <Route path="/myclass" element={ <MyClass/>}/>
+            <Route path="/detail/:id_class" element={ <DetailMyClass/>}/>
         </Routes>
     );
 };

@@ -93,6 +93,14 @@ h1 {
   border-color: transparent;
 }
 
+#card-class{
+  /* max-width: 550px; */
+  height: 310px;
+  border-radius: 15px;
+  background: #f6f7f9;
+  border-color: transparent;
+}
+
 #text{
   margin-left: -5%;
 }
@@ -340,4 +348,14 @@ h1 {
   height: 200px;
   border-radius: 5px;
   border-color: transparent;
+}
+
+#im-detail{
+  border-radius: 10px;
+}
+
+#card-detail{
+  background: #f6f7f9;
+  border-color: transparent;
+  border-radius: 10px;
 }

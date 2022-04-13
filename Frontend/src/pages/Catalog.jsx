@@ -26,7 +26,8 @@ class Catalog extends Component {
             price: 0,
             name: "",
             category_id: "",
-            search: ""
+            search: "",
+            link_class: ""
         }
 
         if (localStorage.getItem('token')) {
@@ -61,6 +62,7 @@ class Catalog extends Component {
             id_category: item.id_category,
             price: item.price,
             id_class: item.id_class,
+            link_class: item.link_class,
             action: "update"
         })
     }
@@ -72,6 +74,7 @@ class Catalog extends Component {
             description_class: "",
             image_class: null,
             price: 0,
+            link_class: "",
             action: "insert"
         })
     }
@@ -98,6 +101,7 @@ class Catalog extends Component {
         form.append("price", this.state.price)
         form.append("id_category", this.state.id_category)
         form.append("id_class", this.state.id_class)
+        form.append("link_class", this.state.link_class)
 
         let url = ""
         if (this.state.action === "insert") {
@@ -219,6 +223,7 @@ class Catalog extends Component {
                                 description={item.description_class}
                                 // penerbit={item.penerbit}
                                 harga={item.price}
+                                link={item.link_class}
                                 cover={"http://localhost:8000/image/class/" + item.image_class}
                                 onEdit={() => this.handleEdit(item)}
                                 onDrop={() => this.handleDrop(item.id_class)}
@@ -243,6 +248,11 @@ class Catalog extends Component {
                                 <Form.Label>Price</Form.Label>
                                 <Form.Control type="text" name="price" placeholder="Input classname"
                                     value={this.state.price} onChange={this.handleChange} />
+                            </Form.Group>
+                            <Form.Group className="mb-2" controlId="name">
+                                <Form.Label>Link Class</Form.Label>
+                                <Form.Control type="text" name="link_class" placeholder="Input link"
+                                    value={this.state.link_class} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="address">
                                 <Form.Label>Description</Form.Label>

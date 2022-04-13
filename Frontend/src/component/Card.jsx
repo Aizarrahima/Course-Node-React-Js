@@ -21,22 +21,23 @@ class Card extends React.Component {
                             <h6 className="price fs-6 fw-normal">
                                 Rp {this.props.harga},00
                             </h6>
-                            <h6 className="fs-6 fw-lighter mb-3">
+                            <h6 className="fs-6 fw-lighter">
                                  {this.props.description}
                             </h6>
+                            <a href={this.props.link} id="link" className="mb-3">{this.props.link}</a><br />
                             {/* <h6 className="fs-6 fw-lighter">
                                 {this.props.penerbit}
                             </h6> */}
                             
 
                             {/* button untuk mengedit */}
-                            <button className="btn btn-sm btn-dark m-1" 
+                            <button className="btn btn-sm btn-dark m-1 mt-3" 
                                 onClick={this.props.onEdit} data-toggle="modal" data-target="#modal" id="sky">
                                <i className="fa fa-pencil"></i>
                             </button>
 
                             {/* button untuk menghapus */}
-                            <button className="btn btn-sm btn-danger m-1" id="light"
+                            <button className="btn btn-sm btn-danger m-1 mt-3" id="light"
                                 onClick={this.props.onDrop}><i className="fa fa-trash"></i>
                             </button>
 

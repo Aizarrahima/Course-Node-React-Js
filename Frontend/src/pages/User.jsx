@@ -270,11 +270,13 @@ class User extends React.Component {
                                 <Form.Control type="email" name="email_user" value={this.state.email_user} placeholder="Masukkan gambar"
                                     onChange={this.handleChange} />
                             </Form.Group>
+                            {this.state.action == "insert" &&
                             <Form.Group className="mb-2" controlId="password">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" name="password_user" value={this.state.password_user} placeholder="Masukkan password"
                                     onChange={this.handleChange} />
                             </Form.Group>
+                            }
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="dark" type="submit" id="blue">

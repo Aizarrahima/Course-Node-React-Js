@@ -138,9 +138,6 @@ class Catalog extends Component {
                             <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Category..." id="search" value={this.state.search} onChange={this.handleChange} onKeyUp={this.findClass} />
 
                         </div>
-                        <div className="col-3 mt-5">
-                            <button onClick={() => this.handleAdd()} className="btn btn-dark" id="btn-blue">Add Data</button>
-                        </div>
                     </div>
 
                     <div className="row">

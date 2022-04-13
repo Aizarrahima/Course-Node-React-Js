@@ -41,7 +41,7 @@ export default class Navbar extends Component {
                   <div className="menu flex space-x-4 ml-10">
                     <NavLink to="/" className="no-underline ml-10 text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Dashboard</NavLink>
                     <NavLink to="/category" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Category</NavLink>
-                    <NavLink to="/user" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">MyClass</NavLink>
+                    <NavLink to="/myclass" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">MyClass</NavLink>
                     <NavLink to="/about" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">About</NavLink>
                     <NavLink to="/contact" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Contact</NavLink>
                     <NavLink to="/contact" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Transaction</NavLink>
