@@ -22,7 +22,8 @@ class Admin extends React.Component {
             phone_admin: "",
             email_admin: "",
             password_admin: "",
-            search: ""
+            search: "",
+            isModalPw: false
         }
         if (localStorage.getItem('token')) {
             this.state.token = localStorage.getItem('token')
@@ -45,7 +46,35 @@ class Admin extends React.Component {
 
     handleClose = () => {
         this.setState({
-            isModalOpen: false
+            isModalOpen: false,
+            isModalPw: false
+        })
+    }
+
+
+    handleSavePw = (e) => {
+        e.preventDefault()
+        let data = {
+            password_admin: this.state.password_admin
+        }
+        if (window.confirm("Are you sure to change password?")) {
+            let url = "http://localhost:8000/admin/update/" + this.state.id_admin
+            axios.put(url, data)
+                .then(res => {
+                    this.getAdmin()
+                    window.location = '/admin'
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    }
+
+    handleEditPw = (item) => {
+        this.setState({
+            isModalPw: true,
+            id_admin: item.id_admin,
+            password_admin: item.password_admin
         })
     }
 
@@ -211,8 +240,10 @@ class Admin extends React.Component {
                                         <td>{item.email_admin}</td>
 
                                         <td>
-                                            <button className="btn btn-sm btn-dark m-1" id="light" onClick={() => this.handleEdit(item)}><i className="fa fa-pencil"></i></button>
-                                            <button className="btn btn-sm btn-dark m-1" id="blue" onClick={() => this.handleDrop(item.id_admin)}><i className="fa fa-trash"></i></button>
+                                            <button className="btn btn-sm btn-dark m-1" id="sky" onClick={() => this.handleEdit(item)}><i className="fa fa-pencil"></i></button>
+                                            <button className="btn btn-sm btn-dark m-1" id="light" onClick={() => this.handleDrop(item.id_admin)}><i className="fa fa-trash"></i></button>
+                                            <button className="btn btn-sm btn-dark m-1" id="blue" onClick={() => this.handleEditPw(item)}>Password</button>
+
                                         </td>
                                     </tr>
                                 )
@@ -265,13 +296,33 @@ class Admin extends React.Component {
                                 <Form.Control type="email" name="email_admin" value={this.state.email_admin} placeholder="Masukkan gambar"
                                     onChange={this.handleChange} />
                             </Form.Group>
-                            {this.state.action === "inser" &&
+                            {this.state.action === "insert" &&
                                 <Form.Group className="mb-2" controlId="password">
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control type="password" name="password_admin" value={this.state.password_admin} placeholder="Masukkan password"
                                         onChange={this.handleChange} />
                                 </Form.Group>
                             }
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="dark" type="submit" id="blue">
+                                Save
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal>
+
+                <Modal show={this.state.isModalPw} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Profile</Modal.Title>
+                    </Modal.Header>
+                    <Form onSubmit={e => this.handleSavePw(e)}>
+                        <Modal.Body>
+                            <Form.Group className="mb-2" controlId="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" name="password_admin" value={this.state.password_admin} placeholder="Masukkan password"
+                                    onChange={this.handleChange} />
+                            </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="dark" type="submit" id="blue">

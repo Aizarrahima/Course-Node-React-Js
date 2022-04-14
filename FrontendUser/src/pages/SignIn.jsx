@@ -9,7 +9,7 @@ export default class SignIn extends React.Component {
       email_user: "",
       password_user: "",
       isModalOpen: false,
-
+      class: []
     }
   }
 
@@ -33,10 +33,21 @@ export default class SignIn extends React.Component {
           let user = res.data.data
           let token = res.data.token
           let id = res.data.data.id_user
+          let url1 = "http://localhost:8000/transaksi/myclass/" + id
           localStorage.setItem("name", name)
           localStorage.setItem("id", id)
           localStorage.setItem("user", JSON.stringify(user))
           localStorage.setItem("token", token)
+          axios.get(url1)
+            .then(res => {
+              this.setState({
+                class: res.data.data
+              })
+              localStorage.setItem("class", JSON.stringify(this.state.class))
+            })
+            .catch(error => {
+              console.log(error)
+            })
           window.location = '/'
         }
         else {
@@ -45,9 +56,9 @@ export default class SignIn extends React.Component {
       })
   }
 
-  
 
-  
+
+
   render() {
     return (
       <div className="dashboard1">
@@ -80,7 +91,7 @@ export default class SignIn extends React.Component {
           <br /><br /><br />
 
         </div>
-        
+
       </div>
     )
   }

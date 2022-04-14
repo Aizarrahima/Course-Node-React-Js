@@ -176,4 +176,23 @@ module.exports = {
           }
         })
   },
+
+  pwUser: (req, res) => {
+    let id_user = req.params.id_user;
+    let password_user = "";
+    if(req.body.password_user){
+      password_user =  md5(req.body.password_user)
+    }
+    let query = `update user set password_user = '${password_user}' where id_user = '${id_user}'`
+    db.query(
+      query,
+      (err, results) => {
+        if ((null, err)) throw err;
+        res.json({
+          message: "Berhasil Ubah Password",
+          data: results,
+        });
+      }
+    );
+  },
 };

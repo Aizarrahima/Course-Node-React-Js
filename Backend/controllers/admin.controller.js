@@ -174,7 +174,26 @@ module.exports = {
             })
         }
     })
-  }
+  },
+
+  pwAdmin: (req, res) => {
+    let id_admin = req.params.id_admin;
+    let password_admin = "";
+    if(req.body.password_admin){
+      password_admin =  md5(req.body.password_admin)
+    }
+    let query = `update admin set password_admin = '${password_admin}' where id_admin = '${id_admin}'`
+    db.query(
+      query,
+      (err, results) => {
+        if ((null, err)) throw err;
+        res.json({
+          message: "Berhasil Ubah Password",
+          data: results,
+        });
+      }
+    );
+  },
 
   
 };

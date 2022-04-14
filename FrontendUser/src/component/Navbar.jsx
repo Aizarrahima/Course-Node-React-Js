@@ -9,6 +9,7 @@ export default class Navbar extends Component {
    localStorage.removeItem("user");
    localStorage.removeItem("token");
    localStorage.removeItem("id");
+   localStorage.removeItem("class");
   }
  }
   

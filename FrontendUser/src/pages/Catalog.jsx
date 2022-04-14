@@ -97,18 +97,31 @@ class Catalog extends Component {
     addToCart = (selectedItem) => {
         // membuat sebuah variabel untuk menampung cart sementara
         let tempCart = []
+        let recentClass = []
         // cek eksistensi dari data cart pada localStorage
         if (localStorage.getItem("cart") !== null) {
             tempCart = JSON.parse(localStorage.getItem("cart"))
             // JSON.parse() digunakan untuk mengonversi dari string -> array object
         }
+
+        if (localStorage.getItem("class") !== null) {
+            recentClass = JSON.parse(localStorage.getItem("class"))
+            // JSON.parse() digunakan untuk mengonversi dari string -> array object
+            console.log(recentClass)
+        }
+
+        
         // cek data yang dipilih user ke keranjang belanja
         let existItem = tempCart.find(item => item.id_class === selectedItem.id_class)
-        if (existItem) {
+        let existItemClass = recentClass.find(item => item.id_class === selectedItem.id_class)
+        if (existItemClass) {
             // jika item yang dipilih ada pada keranjang belanja
+            window.alert("You have had this class")
+        
+        } else if(existItemClass){
             window.alert("You have choose this class")
-        } else {
-           
+        }else{
+            
                 // masukkan item yg dipilih ke dalam cart
                 tempCart.push(selectedItem)
                 // simpan array tempCart ke localStorage

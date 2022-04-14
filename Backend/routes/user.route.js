@@ -31,6 +31,7 @@ router.delete("/:id", userController.delete)
 router.post("/login", userController.login)
 router.put("/delprof/:id", userController.deleteProfile)
 router.put("/", userController.updatePw)
+router.put("/update/:id_user", userController.pwUser)
 
 
 module.exports = router;

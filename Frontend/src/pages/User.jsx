@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../component/Navbar';
 import axios from 'axios';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom'
 
 
 class User extends React.Component {
@@ -22,7 +23,8 @@ class User extends React.Component {
             phone_user: "",
             email_user: "",
             password_user: "",
-            search: ""
+            search: "",
+            isModalPw: false
         }
         if (localStorage.getItem('token')) {
             this.state.token = localStorage.getItem('token')
@@ -45,7 +47,8 @@ class User extends React.Component {
 
     handleClose = () => {
         this.setState({
-            isModalOpen: false
+            isModalOpen: false,
+            isModalPw: false,
         })
     }
 
@@ -112,6 +115,14 @@ class User extends React.Component {
         })
     }
 
+    handleEditPw = (item) => {
+        this.setState({
+            isModalPw: true,
+            id_user: item.id_user,
+            password_user: item.password_user
+        })
+    }
+
     handleAdd = () => {
         this.setState({
             isModalOpen: true,
@@ -126,6 +137,23 @@ class User extends React.Component {
             action: "insert"
         })
     }
+
+    handleSavePw = (e) => {
+        e.preventDefault()
+        let data = {
+          password_user: this.state.password_user
+        }
+        if (window.confirm("Are you sure to change password?")) {
+          let url = "http://localhost:8000/user/update/" + this.state.id_user
+          axios.put(url, data)
+            .then(res => {
+              window.location = '/user'
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        }
+      }
 
     handleSave = (e) => {
         e.preventDefault()
@@ -212,8 +240,10 @@ class User extends React.Component {
                                         <td>{item.age_user}</td>
                                         <td>{item.email_user}</td>
                                         <td>
-                                            <button className="btn btn-sm btn-dark m-1" id="light" onClick={() => this.handleEdit(item)}><i className="fa fa-pencil"></i></button>
-                                            <button className="btn btn-sm btn-dark m-1" id="blue" onClick={() => this.handleDrop(item.id_user)}><i className="fa fa-trash"></i></button>
+                                            <button className="btn btn-sm btn-dark m-1" id="sky" onClick={() => this.handleEdit(item)}><i className="fa fa-pencil"></i></button>
+                                            <button className="btn btn-sm btn-dark m-1" id="light" onClick={() => this.handleDrop(item.id_user)}><i className="fa fa-trash"></i></button>
+                                            <button className="btn btn-sm btn-dark m-1" id="blue" onClick={() => this.handleEditPw(item)}>Password</button>
+
                                         </td>
                                     </tr>
                                 )
@@ -277,6 +307,27 @@ class User extends React.Component {
                                     onChange={this.handleChange} />
                             </Form.Group>
                             }
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="dark" type="submit" id="blue">
+                                Save
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal>
+
+                
+                <Modal show={this.state.isModalPw} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Profile</Modal.Title>
+                    </Modal.Header>
+                    <Form onSubmit={e => this.handleSavePw(e)}>
+                        <Modal.Body>
+                            <Form.Group className="mb-2" controlId="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" name="password_user" value={this.state.password_user} placeholder="Masukkan password"
+                                    onChange={this.handleChange} />
+                            </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="dark" type="submit" id="blue">

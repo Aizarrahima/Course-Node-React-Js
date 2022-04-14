@@ -31,6 +31,8 @@ router.put("/delprof/:id", adminController.deleteProfile)
 router.post("/login", adminController.login)
 router.delete("/:id", adminController.delete)
 router.post("/find", adminController.find)
+router.put("/update/:id_admin", adminController.pwAdmin)
+
 
 
 module.exports = router;

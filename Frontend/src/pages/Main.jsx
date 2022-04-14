@@ -14,9 +14,6 @@ import ForgotPass from './ForgotPass';
 import Userclass from './Userclass';
 
 const Main = () => {
-    
-    
-   
     return (
         <Routes>
             <Route exact path="/" element={<Home/>}/>
@@ -31,6 +28,7 @@ const Main = () => {
             <Route exact path="/mentor" element={ <Mentor/>}/>
             <Route exact path="/forgotPassword" element={ <ForgotPass/>}/>
             <Route exact path="/userClass" element={ <Userclass/>}/>
+
         </Routes>
     );
 };
