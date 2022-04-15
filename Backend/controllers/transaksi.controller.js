@@ -119,15 +119,16 @@ detail: (req, res) => {
 
 find: (req, res) => {
   let find = req.body.find
-  const id = req.params.id
-  let sql = "select * from transaksi join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi join class on detail_transaksi.id_class = class.id_class join category on class.id_category = category.id_category where class.name_class like '%" + find + "%' or category.name like '%" + find + "%' and transaksi.id_user = ? "
-  db.query(sql, id, (err, result) => {
+  const id_user = req.params.id_user
+  let sql = "select * from transaksi join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi join class on detail_transaksi.id_class = class.id_class join category on class.id_category = category.id_category where class.name_class like '%" + find + "%' and transaksi.id_user = ? "
+  db.query(sql, id_user, (err, result) => {
       if (err) {
           throw err
       } else {
           res.json({
             result
           })
+          console.log(sql)
       }
   })
 },

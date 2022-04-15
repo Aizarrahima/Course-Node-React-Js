@@ -118,7 +118,7 @@ class Catalog extends Component {
             // jika item yang dipilih ada pada keranjang belanja
             window.alert("You have had this class")
         
-        } else if(existItemClass){
+        } else if(existItem){
             window.alert("You have choose this class")
         }else{
             

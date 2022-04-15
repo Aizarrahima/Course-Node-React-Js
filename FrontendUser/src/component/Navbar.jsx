@@ -45,7 +45,6 @@ export default class Navbar extends Component {
                     <NavLink to="/myclass" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">MyClass</NavLink>
                     <NavLink to="/about" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">About</NavLink>
                     <NavLink to="/contact" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Contact</NavLink>
-                    <NavLink to="/contact" className="no-underline text-gray-800 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium " aria-current="page">Transaction</NavLink>
                     <NavLink to="/profile" className="no-underline text-gray-800 hover:text-blue-900 px-3 py-0 px-1 rounded-md text-2xl font-medium " aria-current="page" id="profile"><i className="fa fa-user me-1 "></i></NavLink>
                     <button onClick={() => this.out()} className="no-underline text-gray-800 px-1 py-0 hover:text-blue-900 rounded-md text-2xl font-medium" aria-current="page" > <i className="fa fa-sign-out me-1 "></i></button>
                   </div>

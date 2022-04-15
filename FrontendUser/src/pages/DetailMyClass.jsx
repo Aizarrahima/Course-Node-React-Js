@@ -32,7 +32,7 @@ class DetailMyClass extends Component {
       .then(res => {
         // mengisikan data dari respon API ke array pegawai
         this.setState({
-          class: res.data.data.id_class
+          class: res.data.data
         })
       })
       .catch(error => {

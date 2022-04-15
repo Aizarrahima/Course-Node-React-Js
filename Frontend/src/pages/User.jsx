@@ -317,7 +317,7 @@ class User extends React.Component {
                 </Modal>
 
                 
-                <Modal show={this.state.isModalPw} onHide={this.handleClose}>
+                <Modal show={this.state.isModalPw} onHide={this.handleClose} centered>
                     <Modal.Header closeButton>
                         <Modal.Title>Edit Profile</Modal.Title>
                     </Modal.Header>
