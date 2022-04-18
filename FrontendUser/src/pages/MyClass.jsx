@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar from '../component/Navbar'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom'
+import CartBar from '../component/CartBar';
 
 export default class MyClass extends Component {
     constructor() {
@@ -19,9 +20,10 @@ export default class MyClass extends Component {
             description_class: "",
             name: "",
             category_id: "",
-            search: ""
+            search: "",
+            filterClass: []
         }
-        this.state.filterClass = this.state.myclass
+
 
         if (localStorage.getItem('token')) {
             this.state.token = localStorage.getItem('token')
@@ -94,68 +96,79 @@ export default class MyClass extends Component {
     render() {
         return (
             <div>
-                <Navbar />
-                {this.state.myclass.length > 0 &&
-                    <div className="container my-2 py-5">
-                        <h1 className='fs-5 fw-bolder mt text-left mb-2' id="text-blue">Hi, {this.state.userName}</h1>
+            <Navbar />
+            {this.state.myclass.length > 0 &&
+                <div className="container my-2 py-5">
+                    <h1 className='fs-5 fw-bolder mt text-left mb-2' id="text-blue">Hi, {this.state.userName}</h1>
 
-                        <h1 className="display-6 fw-bold text-left">Here're your classes</h1>
-
-
-                        <div className="buttons d-flex justify-content-center mt-5 mb-1 pb-1 pt-3">
-                            <button className="btn btn-outline-dark me-2" onClick={() => this.getCategory()}>All</button>
-                            <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Coding Class")}>Coding</button>
-                            <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Video Editing Class")}>Video Editing</button>
-                            <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Graphic Design Class")}>Graphic Design</button>
-                            <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("GameDev Class")}>GameDev</button>
-                        </div>
-
-                        <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Your Class..."  value={this.state.search} onChange={this.handleChange} onKeyUp={this.findMyClass} />
+                    <h1 className="display-6 fw-bold text-left">Here're your classes</h1>
 
 
-                        <div className="row">
-                            {this.state.myclass.map((item, index) => (
-                                <div className="col-lg-6 col-sm-12 p-2" key={this.props.key}>
-                                    <div className="card" id="card-class">
-                                        <div className="card-body row" id="crd">
-                                            {/* menampilkan Gambar / cover */}
-                                            <div className="col-5 mt-3">
-                                                <img src={"http://localhost:8000/image/class/" + item.image_class} className="img"
-                                                    id="buku" />
-                                            </div>
+                    <div className="buttons d-flex justify-content-center mt-5 mb-1 pb-1 pt-3">
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.getCategory()}>All</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Coding Class")}>Coding</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Video Editing Class")}>Video Editing</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Graphic Design Class")}>Graphic Design</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("GameDev Class")}>GameDev</button>
+                    </div>
 
-                                            {/* menampilkan deskripsi */}
-                                            <div className="col-7 mt-3" id="text">
-                                                <h4 className="judul fs-3">
-                                                    {item.name_class}
-                                                </h4>
-                                                <h6 className="price fs-6 fw-normal">
-                                                    {item.name} Category
-                                                </h6>
-                                                <h6 className="fs-6 fw-lighter mb-3">
-                                                    {item.description_class}
-                                                </h6>
-                                                <NavLink to={`/detail/${item.id_class}`} className="btn btn-sm btn-dark m-1" id="blue">
-                                                    Detail
-                                                </NavLink>
+                    <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Your Class..."  value={this.state.search} onChange={this.handleChange} onKeyUp={this.findMyClass} />
 
-                                            </div>
+
+                    <div className="row">
+                        {this.state.myclass.map((item, index) => (
+                            <div className="col-lg-6 col-sm-12 p-2" key={this.props.key}>
+                                <div className="card" id="card-class">
+                                    <div className="card-body row" id="crd">
+                                        {/* menampilkan Gambar / cover */}
+                                        <div className="col-5 mt-3">
+                                            <img src={"http://localhost:8000/image/class/" + item.image_class} className="img"
+                                                id="buku" />
+                                        </div>
+
+                                        {/* menampilkan deskripsi */}
+                                        <div className="col-7 mt-3" id="text">
+                                            <h4 className="judul fs-3">
+                                                {item.name_class}
+                                            </h4>
+                                            <h6 className="price fs-6 fw-normal">
+                                                {item.name} Category
+                                            </h6>
+                                            <h6 className="fs-6 fw-lighter mb-3">
+                                                {item.description_class}
+                                            </h6>
+                                            <NavLink to={`/detail/${item.id_class}`} className="btn btn-sm btn-dark m-1" id="blue">
+                                                Detail
+                                            </NavLink>
+
                                         </div>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
-                }
+                </div>
+            }
 
-                {this.state.myclass.length === 0 &&
-                    <div className="container my-2 py-5">
-                        <h1 className='fs-5 fw-bolder mt text-left mb-2' id="text-blue">Hi, {this.state.userName}</h1>
-
-                        <h1 className="display-6 fw-bold text-left">Your class is empty</h1>
+            {this.state.myclass.length === 0 &&
+                <div className="container my-2 py-5">
+                    <h1 className='fs-5 fw-bolder mt text-left mb-2' id="text-blue">Hi, {this.state.userName}</h1>
+                    <h1 className="display-6 fw-bold text-left">Your class is empty or not found</h1>
+                    <div className="buttons d-flex justify-content-center mt-5 mb-1 pb-1 pt-3">
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.getCategory()}>All</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Coding Class")}>Coding</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Video Editing Class")}>Video Editing</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("Graphic Design Class")}>Graphic Design</button>
+                        <button className="btn btn-outline-dark me-2" onClick={() => this.findCategory("GameDev Class")}>GameDev</button>
                     </div>
-                }
-            </div>
+
+                    <input type="text" name="search" className="form-control my-5 rounded" placeholder="Search Your Class..."  value={this.state.search} onChange={this.handleChange} onKeyUp={this.findMyClass} />
+
+
+                </div>
+            }
+            <CartBar/>
+        </div>
         )
     }
 }

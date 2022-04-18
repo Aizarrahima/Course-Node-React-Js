@@ -13,7 +13,8 @@ class Payment extends Component {
             user: "",
             id_user: 0,
             id_transaksi: 0,
-            nomor_transaksi: null
+            nomor_transaksi: null,
+            class: []
         }
 
         if (localStorage.getItem('token')) {
@@ -37,21 +38,33 @@ class Payment extends Component {
     handleUpload = (e) => {
         e.preventDefault()
         let data = {
-            nomor_transaksi : this.state.nomor_transaksi
+            nomor_transaksi: this.state.nomor_transaksi
         }
         let url = `http://localhost:8000/transaksi/bayar/${this.state.id_transaksi}`
+        let url1 = "http://localhost:8000/transaksi/myclass/" + this.state.id_user
         axios.put(url, data)
             .then(response => {
+                axios.get(url1)
+                    .then(res => {
+                        this.setState({
+                            class: res.data.data
+                        })
+                        localStorage.setItem("class", JSON.stringify(this.state.class))
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
                 window.alert(response.data.message)
                 window.location = '/success'
             })
             .catch(error => {
                 console.log(error);
             });
+
     }
 
 
-   
+
     render() {
         return (
             <div>

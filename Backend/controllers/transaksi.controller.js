@@ -128,7 +128,6 @@ find: (req, res) => {
           res.json({
             result
           })
-          console.log(sql)
       }
   })
 },
@@ -164,7 +163,6 @@ findCategory: (req, res) => {
       message: "Data Kategori",
       data: results
     })
-    console.log(sql)
   })
 }
 

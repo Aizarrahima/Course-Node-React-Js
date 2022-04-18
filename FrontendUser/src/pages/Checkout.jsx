@@ -41,7 +41,7 @@ export default class Checkout extends Component {
                 id_class: 0
             }
             let id_transaksi = 0
-            // let tempcart = []
+            let tempcart = []
             axios.post("http://localhost:8000/transaksi/", dt)
                 .then(response => {
                     id_transaksi = response.data.id_transaksi
@@ -52,12 +52,7 @@ export default class Checkout extends Component {
                             detail.id_transaksi = id_transaksi,
                             axios.post("http://localhost:8000/transaksi/addDetail", detail)
                                 .then(response => {
-                                    // if (localStorage.getItem("class") !== null) {
-                                    //     tempcart = JSON.parse(localStorage.getItem("class"))
-                                    // }
-                                    // tempcart.push(detail)
-                                    // localStorage.setItem("class", JSON.stringify(tempcart))
-
+                                    
                                 })
                                 .catch(error => {
 
