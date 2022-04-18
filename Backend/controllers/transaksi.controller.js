@@ -148,11 +148,25 @@ findUser: (req, res) => {
   db.query("select name_user, user.id_user, email_user, phone_user from user join transaksi on transaksi.id_user = user.id_user where name_user like '%" + find + "%' or user.id_user like '%" + find + "%'or user.email_user like '%" + find + "%' or user.phone_user like '%" + find + "%' GROUP BY user.name_user", (err, results) => {
       if (err) throw err;
       res.json({
-          message: "Success transaction",
           results
       })
   })
 },
+
+findCategory: (req, res) => {
+  const id = req.params.id_user;
+  let status = "LUNAS"
+  let kategori = req.body.kategori
+  let sql = `select * from transaksi join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi join class on detail_transaksi.id_class = class.id_class join category on class.id_category = category.id_category where transaksi.status_transaksi = "${status}" AND transaksi.id_user = ${id} AND category.name = "${kategori}" `
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.json({
+      message: "Data Kategori",
+      data: results
+    })
+    console.log(sql)
+  })
+}
 
 
 

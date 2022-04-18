@@ -41,26 +41,32 @@ export default class Checkout extends Component {
                 id_class: 0
             }
             let id_transaksi = 0
+            // let tempcart = []
             axios.post("http://localhost:8000/transaksi/", dt)
                 .then(response => {
                     id_transaksi = response.data.id_transaksi
-                    {this.state.cart.map((item, index) =>
+                    {
+                        this.state.cart.map((item, index) =>
                         (
                             detail.id_class = item.id_class,
                             detail.id_transaksi = id_transaksi,
                             axios.post("http://localhost:8000/transaksi/addDetail", detail)
                                 .then(response => {
-                                    // clear cart
-        
-                                    // window.location = "/transaction"
+                                    // if (localStorage.getItem("class") !== null) {
+                                    //     tempcart = JSON.parse(localStorage.getItem("class"))
+                                    // }
+                                    // tempcart.push(detail)
+                                    // localStorage.setItem("class", JSON.stringify(tempcart))
+
                                 })
                                 .catch(error => {
-        
+
                                     console.log(error);
                                 })
                         ))
                     }
                     window.alert("Success Checkout")
+
                     localStorage.removeItem("cart")
                     this.initCart()
                     window.location = `/payment/${detail.id_transaksi}`
@@ -69,8 +75,8 @@ export default class Checkout extends Component {
 
                     console.log(error);
                 })
-            
-           
+
+
 
             // {this.state.cart.map((item, index) =>
             //     (
@@ -111,10 +117,10 @@ export default class Checkout extends Component {
                 <div className="container my-5 py-5" >
                     <div className="row g-5">
                         <div className="col-md-12 col-lg-12 order-md-last">
-                        <h5 id="t-dark">{this.state.user}'s Bill</h5>
-                            
+                            <h5 id="t-dark">{this.state.user}'s Bill</h5>
+
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
-                            <h6 id="t-dark" className='mb-3 fw-normal'>Transaction at {this.state.tanggal_transaksi}</h6>
+                                <h6 id="t-dark" className='mb-3 fw-normal'>Transaction at {this.state.tanggal_transaksi}</h6>
                                 <span className="badge rounded-pill" id="blue">{this.state.cart.length}</span>
                             </h4>
                             <ul className="list-group ">
