@@ -14,7 +14,8 @@ class Payment extends Component {
             id_user: 0,
             id_transaksi: 0,
             nomor_transaksi: null,
-            class: []
+            class: [],
+            verification: 0
         }
 
         if (localStorage.getItem('token')) {
@@ -25,6 +26,7 @@ class Payment extends Component {
             window.location = '/signin'
         }
         this.state.id_transaksi = this.props.params.id_transaksi
+        this.state.verification = localStorage.getItem("verification")
     }
 
 
@@ -42,7 +44,8 @@ class Payment extends Component {
         }
         let url = `http://localhost:8000/transaksi/bayar/${this.state.id_transaksi}`
         let url1 = "http://localhost:8000/transaksi/myclass/" + this.state.id_user
-        axios.put(url, data)
+        if(data.nomor_transaksi === this.state.verification){
+            axios.put(url, data)
             .then(response => {
                 axios.get(url1)
                     .then(res => {
@@ -55,11 +58,16 @@ class Payment extends Component {
                         console.log(error)
                     })
                 window.alert(response.data.message)
+                localStorage.removeItem("verification")
                 window.location = '/success'
             })
             .catch(error => {
                 console.log(error);
             });
+        }else{
+            window.alert("Your token verification is not valid")
+        }
+        
 
     }
 

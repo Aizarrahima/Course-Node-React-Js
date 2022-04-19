@@ -14,7 +14,8 @@ export default class Checkout extends Component {
             total: 0, // untuk menyimpan data total belanja
             isCart: false,
             tanggal_transaksi: null,
-            now: new Date()
+            now: new Date(),
+            verification: 0,
         }
         const moment = require('moment');
         this.state.tanggal_transaksi = moment(this.state.now).format('YYYY-MM-DD');
@@ -27,6 +28,8 @@ export default class Checkout extends Component {
         } else {
             window.location = '/signin'
         }
+
+        this.state.verification = Math.random(1000, 10000000) * 100000000000000000
 
 
     }
@@ -41,7 +44,6 @@ export default class Checkout extends Component {
                 id_class: 0
             }
             let id_transaksi = 0
-            let tempcart = []
             axios.post("http://localhost:8000/transaksi/", dt)
                 .then(response => {
                     id_transaksi = response.data.id_transaksi
@@ -61,7 +63,7 @@ export default class Checkout extends Component {
                         ))
                     }
                     window.alert("Success Checkout")
-
+                    localStorage.setItem("verification", this.state.verification)
                     localStorage.removeItem("cart")
                     this.initCart()
                     window.location = `/payment/${detail.id_transaksi}`
@@ -137,8 +139,8 @@ export default class Checkout extends Component {
                                 <li className="list-group-item d-flex justify-content-between">
                                     <div>
                                         <h6 className="my-0">Payment</h6>
-                                        <span className="text-muted">Transfer at Bank BCA a.n TechCo Company 9910 6382 0012</span>
-                                    </div>
+                                        <span className="text-muted">Transfer at Bank BCA a.n TechCo Company 9910 6382 0012 <br /> Input this token verification to next step for payment!! : <b>{this.state.verification}</b></span>
+                                    </div><br />
                                 </li>
                             </ul>
 

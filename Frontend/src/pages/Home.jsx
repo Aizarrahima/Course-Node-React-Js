@@ -92,12 +92,7 @@ class Home extends React.Component {
                           </div>
                         </div>
                        
-                        <a
-                          href="#"
-                          className="block w-full px-5 py-3 text-center font-medium text-lime-600 bg-gray-50 hover:bg-gray-100"
-                        >
-                          Log in
-                        </a>
+                       
                       </div>
                     </Popover.Panel>
                   </Transition>

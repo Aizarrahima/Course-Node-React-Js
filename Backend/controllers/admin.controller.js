@@ -12,6 +12,7 @@ const SECRET_KEY = "COURSEWEBNODE"
 
 // endpoint
 module.exports = {
+  //Get semua data
   getAll: (req, res) => {
     db.query(`select * from admin`, (err, results) => {
       if (err) throw err;
@@ -22,6 +23,7 @@ module.exports = {
     });
   },
 
+  //Get berdasarkan id admin
   getId: (req, res) => {
     const id = req.params.id;
     db.query(`select * from admin where id_admin = '${id}'`, (err, results) => {
@@ -34,6 +36,7 @@ module.exports = {
     });
   },
 
+  //Tambah data admin
   add: (req, res) => {
     let data = {
       name_admin: req.body.name_admin,
@@ -68,6 +71,7 @@ module.exports = {
     }
   },
 
+  //Update data
   update: (req, res) => {
     const id = req.params.id;
     let data = {
@@ -95,6 +99,7 @@ module.exports = {
     })
   },
 
+  //Delete data
   delete: (req, res) => {
     const id = req.params.id;
     db.query(`delete from admin where id_admin = '${id}'`, (err, results) => {
@@ -106,6 +111,7 @@ module.exports = {
     });
   },
 
+  //delete profile
   deleteProfile: (req, res) => {
     const id = req.params.id;
     let photo = ""
@@ -118,6 +124,7 @@ module.exports = {
     });
   },
 
+  //Update password berdasarkan email
   updatePw: (req, res) => {
     let email_admin =  req.body.email_admin
     let password_admin = ""
@@ -133,6 +140,7 @@ module.exports = {
     });
   },
 
+  //Login
   login: (req, res) => {
     let email_admin =  req.body.email_admin
     let password_admin = req.body.password_admin
@@ -142,7 +150,8 @@ module.exports = {
        db.query(`select * from admin where email_admin = '${email_admin}'`, (err, result)=>{
         const admin = result[0]
           if (typeof admin === 'undefined'){
-            res.status(401).json({message: "User not fond"})
+            res.
+            json({message: "User not fond"})
           }else{
             if(admin.password_admin === md5(password_admin)){
               const token = jwt.sign({data: admin}, SECRET_KEY)
@@ -161,6 +170,7 @@ module.exports = {
         })
   },
 
+  //find (Search)
   find: (req, res) => {
     let find = req.body.find
     let sql = "select * from admin where name_admin like '%" + find + "%' or id_admin like '%" + find + "%' or address_admin like '%" + find + "%' or gender_admin like '%" + find + "%' or age_admin like '%" + find + "%' or email_admin like '%" + find + "%' or phone_admin like '%" + find + "%' "
@@ -176,6 +186,7 @@ module.exports = {
     })
   },
 
+  //Update pw berdasakan id
   pwAdmin: (req, res) => {
     let id_admin = req.params.id_admin;
     let password_admin = "";

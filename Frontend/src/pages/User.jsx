@@ -258,7 +258,7 @@ class User extends React.Component {
 
                 <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit Profile</Modal.Title>
+                        <Modal.Title>User</Modal.Title>
                     </Modal.Header>
                     <Form onSubmit={e => this.handleSave(e)}>
                         <Modal.Body>
@@ -319,7 +319,7 @@ class User extends React.Component {
                 
                 <Modal show={this.state.isModalPw} onHide={this.handleClose} centered>
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit Profile</Modal.Title>
+                        <Modal.Title>Update Password</Modal.Title>
                     </Modal.Header>
                     <Form onSubmit={e => this.handleSavePw(e)}>
                         <Modal.Body>

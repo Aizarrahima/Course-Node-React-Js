@@ -20,6 +20,7 @@ const db = require("../database");
 
 // endpoint
 module.exports = {
+  // get semua data
   getAll: (req, res) => {
     const sql = "select * from category";
     db.query(sql, (err, results) => {
@@ -30,6 +31,7 @@ module.exports = {
     });
   },
 
+  // get category berdasarkan id
   getId: (req, res) => {
     const id = req.params.id;
     db.query(`select * from category where id_category = ${id}`, (err, results) => {
@@ -41,6 +43,7 @@ module.exports = {
     });
   },
 
+  // tambah data
   add: (req, res) => {
       let data = {
         name: req.body.name,
@@ -63,10 +66,10 @@ module.exports = {
             category: data,
           });
         });
-      }
-      
+      } 
   },
 
+  // Update data password
   update: (req, res) => {
     let id = req.params.id
     let data = {
@@ -92,9 +95,10 @@ module.exports = {
         }
      })
     }
- 
   },
 
+  //delete category
+  
   delete: (req, res) => {
     const id = req.params.id;
     db.query(`delete from category where id_category = ${id}`, (err, results) => {

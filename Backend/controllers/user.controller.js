@@ -158,7 +158,7 @@ module.exports = {
        db.query(`select * from user where email_user = '${email_user}'`, (err, result)=>{
         const user = result[0]
           if (typeof user === 'undefined'){
-            res.status(401).json({message: "User not fond"})
+            res.json({message: "User not fond"})
           }else{
             if(user.password_user === md5(password_user)){
               const token = jwt.sign({data: user}, SECRET_KEY)

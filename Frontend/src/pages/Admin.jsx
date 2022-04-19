@@ -254,7 +254,7 @@ class Admin extends React.Component {
                 </div>
                 <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit Profile</Modal.Title>
+                        <Modal.Title>Admin</Modal.Title>
                     </Modal.Header>
                     <Form onSubmit={e => this.handleSave(e)}>
                         <Modal.Body>
@@ -314,7 +314,7 @@ class Admin extends React.Component {
 
                 <Modal show={this.state.isModalPw} onHide={this.handleClose} centered>
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit Profile</Modal.Title>
+                        <Modal.Title>Edit Password</Modal.Title>
                     </Modal.Header>
                     <Form onSubmit={e => this.handleSavePw(e)}>
                         <Modal.Body>

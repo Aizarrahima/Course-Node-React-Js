@@ -15,6 +15,7 @@ const db = require("../database");
 
 // endpoint
 module.exports = {
+    //get semua data
     getAll: (req, res) => {
         const sql = "select * from class";
         db.query(sql, (err, results) => {
@@ -26,6 +27,7 @@ module.exports = {
         });
     },
 
+    // Get class berdasarkan id
     getId: (req, res) => {
         const id = req.params.id;
         db.query(`select * from class join category on class.id_category = category.id_category where id_class = ${id}`, (err, results) => {
@@ -38,6 +40,7 @@ module.exports = {
         });
     },
 
+    //get class berdasarkan id category
     getCategory: (req, res) => {
         const id = req.params.id_category;
         db.query(`select * from class join category on class.id_category = category.id_category where class.id_category = ${id}`, (err, results) => {
@@ -49,6 +52,7 @@ module.exports = {
         })
     },
 
+    // Tambah data class
     add: (req, res) => {
         if (!req.file) {
             res.json({
@@ -86,6 +90,7 @@ module.exports = {
         }
     },
 
+    //Update data class
     update: (req, res) => {
         let id = req.params.id;
         let data = {
@@ -123,6 +128,7 @@ module.exports = {
         );
     },
 
+    //Delete class
     delete: (req, res) => {
         const id = req.params.id;
         db.query(`delete from class where id_class = ${id}`, (err, results) => {
@@ -134,6 +140,8 @@ module.exports = {
         });
     },
 
+
+    //Search di page catalog detail
     find: (req, res) => {
         let find = req.body.find
         const id = req.params.id 
