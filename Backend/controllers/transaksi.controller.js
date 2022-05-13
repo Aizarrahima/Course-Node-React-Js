@@ -33,7 +33,6 @@ module.exports = {
   },
 
   addDetail: (req, res) => {
-
     let detail = {
       id_transaksi: req.body.id_transaksi,
       id_class: req.body.id_class,

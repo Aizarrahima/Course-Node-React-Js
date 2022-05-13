@@ -98,6 +98,7 @@ class Profile extends Component {
                 // jika proses simpan berhasil, memanggil data yang terbaru
                 this.getAdmin();
                 this.handleClose()
+                localStorage.setItem("name", this.state.name_admin)
             })
             .catch(error => {
                 console.log(error);
@@ -192,49 +193,49 @@ class Profile extends Component {
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Admin ID</label>
                                         <div className="col-sm-10">
-                                            <input type="number" name="id_admin" class="form-control" value={this.state.adminId}  />
+                                            <input type="number" name="id_admin" class="form-control" value={this.state.adminId} readOnly />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Name</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="name_admin" class="form-control" value={this.state.admin.name_admin} onChange={this.handleChange} />
+                                            <input type="text" name="name_admin" class="form-control" value={this.state.admin.name_admin} readOnly />
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Phone</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="phone_admin" class="form-control" value={this.state.admin.phone_admin} />
+                                            <input type="text" name="phone_admin" class="form-control" value={this.state.admin.phone_admin} readOnly/>
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Gender</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="gender_admin" class="form-control" value={this.state.admin.gender_admin} />
+                                            <input type="text" name="gender_admin" class="form-control" value={this.state.admin.gender_admin} readOnly/>
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Address</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="address_admin" class="form-control" value={this.state.admin.address_admin} />
+                                            <input type="text" name="address_admin" class="form-control" value={this.state.admin.address_admin} readOnly/>
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Age</label>
                                         <div className="col-sm-10">
-                                            <input type="number" name="age_admin" class="form-control" value={this.state.admin.age_admin} />
+                                            <input type="number" name="age_admin" class="form-control" value={this.state.admin.age_admin} readOnly/>
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Email</label>
                                         <div className="col-sm-10">
-                                            <input type="email" name="email_admin" class="form-control" value={this.state.admin.email_admin} />
+                                            <input type="email" name="email_admin" class="form-control" value={this.state.admin.email_admin} readOnly/>
                                         </div>
                                     </div>
                                     <div className="form-group row mb-4">
                                         <label className="col-sm-2 col-form-label fw-bold">Password</label>
                                         <div className="col-sm-10">
-                                            <input type="password" name="password_admin" class="form-control" value={this.state.admin.password_admin} />
+                                            <input type="password" name="password_admin" class="form-control" value={this.state.admin.password_admin} readOnly/>
                                         </div>
                                     </div>
 
